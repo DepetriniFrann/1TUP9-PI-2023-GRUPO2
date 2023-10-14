@@ -6,7 +6,6 @@ Proceso sin_titulo
 	Definir vuelo_Brc, vuelo_Salta, vuelo_BsAs, vuelo_Mendoza Como Caracter
 	Dimension vuelo_Brc[120,7]
 	cant_pasajes_disponibles = 120
-	//hola
 	Escribir "Bienvenidos a nuestro Sistema de venta de pasajes aéreos"
 	Repetir
 		
