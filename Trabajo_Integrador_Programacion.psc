@@ -7,8 +7,8 @@ Proceso sin_titulo
 	Definir vuelo_Brc, vuelo_Salta, vuelo_BsAs, vuelo_Mendoza Como Caracter
 	Dimension vuelo_Brc[120,7]
 	Dimension vuelo_Salta[120,7]
-	cant_pasajes_disponibles_brc = 120
-	cant_pasajes_disponibles_salta = 120
+	
+	
 	Escribir "Bienvenidos a nuestro Sistema de venta de pasajes aéreos"
 	Repetir
 		
@@ -37,17 +37,32 @@ Proceso sin_titulo
 					1:	si contador_brc == 120 Entonces
 							Escribir "Opcion invalida, no quedan mas pasajes"
 						SiNo
+							cant_pasajes_disponibles_brc = 120
 							cant_pasajes_disponibles_brc = cant_pasajes_disponibles_brc  - contador_brc
 							Escribir "Su seleccion fue Buenos Aires - Bariloche"
 							
 							Escribir "Ingrese la cantidad de vuelos que va a comprar quedan disponibles: (", cant_pasajes_disponibles_brc  ")"
-							Leer cant_pasajes_brc
-							Mientras (cant_pasajes_brc + contador_brc) > 120 o cant_pasajes_brc > 120 Hacer
-								Escribir "Ha superado la cantidad de pasajes disponible"
-								Escribir "Solo quedan: " cant_pasajes_disponibles_brc 
-								Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
-								Leer cant_pasajes
-							FinMientras
+							
+							Repetir
+								Leer cant_pasajes_brc
+								si cant_pasajes_brc > cant_pasajes_disponibles_brc Entonces
+										Escribir "Ha superado la cantidad de pasajes disponible"
+										Escribir "Solo quedan: " cant_pasajes_disponibles_brc 
+										Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+								FinSi
+							Mientras Que cant_pasajes_brc > cant_pasajes_disponibles_brc
+							
+							
+							
+							
+							//Mientras (cant_pasajes_brc + contador_brc) > 120 o cant_pasajes_brc > 120 Hacer
+							//	Escribir "Ha superado la cantidad de pasajes disponible"
+							//	Escribir "Solo quedan: " cant_pasajes_disponibles_brc 
+							//	Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+							//	Leer cant_pasajes
+							//FinMientras
+							
+							
 							
 							Para i=0 Hasta cant_pasajes_brc-1 Hacer
 								
@@ -80,8 +95,8 @@ Proceso sin_titulo
 								Mostrar "Telefono: ", vuelo_Brc[i,2]
 								Mostrar "Equipaje en Bodega: ", vuelo_Brc[i,3]
 								Mostrar "Numero de Pasajero: ", vuelo_Brc[i,4]
-								contador_brc = contador_bariloche+1
-								vuelo_Brc[i,6] = ConvertirATexto(contador_bariloche)
+								contador_brc = contador_brc+1
+								vuelo_Brc[i,6] = ConvertirATexto(contador_brc)
 								Mostrar "Asiento: ", vuelo_Brc[i,6]
 								
 								si contador_brc <= 20 Entonces
@@ -111,18 +126,30 @@ Proceso sin_titulo
 						si contador_salta == 120 Entonces
 							Escribir "Opcion invalida, no quedan mas pasajes"
 						SiNo
+							cant_pasajes_disponibles_salta = 120
 							cant_pasajes_disponibles_salta = cant_pasajes_disponibles_salta - contador_salta
 							Escribir "Su seleccion fue Bueno Aires - Salta"
 							
 							Escribir "Ingrese la cantidad de vuelos que va a comprar quedan disponibles: (", cant_pasajes_disponibles_salta ")"
-							Leer cant_pasajes_salta
 							
-							Mientras (cant_pasajes_salta + contador_salta) > 120 o cant_pasajes_salta > 120  Hacer
-								Escribir "Ha superado la cantidad de pasajes disponible"
-								Escribir "Solo quedan: " cant_pasajes_disponibles_salta
-								Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+							
+							
+							Repetir
 								Leer cant_pasajes_salta
-							FinMientras
+								si cant_pasajes_salta > cant_pasajes_disponibles_salta Entonces
+									Escribir "Ha superado la cantidad de pasajes disponible"
+									Escribir "Solo quedan: " cant_pasajes_disponibles_salta 
+									Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+								FinSi
+							Mientras Que cant_pasajes_salta > cant_pasajes_disponibles_salta
+							
+							
+							//Mientras (cant_pasajes_salta + contador_salta) > 120 o cant_pasajes_salta > 120  Hacer
+							//	Escribir "Ha superado la cantidad de pasajes disponible"
+							//	Escribir "Solo quedan: " cant_pasajes_disponibles_salta
+							//	Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+							//	Leer cant_pasajes_salta
+							//FinMientras
 							
 							Para s=0 Hasta cant_pasajes_salta-1 Hacer
 								
