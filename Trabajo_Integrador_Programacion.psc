@@ -1,17 +1,18 @@
 Proceso sin_titulo
 	
-	Definir nombre_apellido, equipaje_en_bodega Como Caracter
-	Definir dni, telefono, numero_pasajero, opcion_, opcion_venta Como Entero
-	
+	Definir nombre_apellido, equipaje_en_bodega, opcion_ Como Caracter
+	Definir dni, telefono, numero_pasajero, opcion_venta Como Entero
+	//CANTIDAD DE PASAJES DISPONIBLES
 	Definir  cant_pasajes_disponibles_salta , cant_pasajes_disponibles_brc, cant_pasajes_disponibles_bsas, cant_pasajes_disponibles_mdz  Como Entero
-	
+	//ARRAYS
 	Definir vuelo_Brc, vuelo_Salta, vuelo_Bsas, vuelo_Mendoza Como Caracter
 	Dimension vuelo_Brc[120,7]
 	Dimension vuelo_Salta[120,7]
 	Dimension vuelo_Bsas[80,7]
 	Dimension vuelo_Mendoza[80,7]
-	
+	//CONTADOR DE CADA VUELO
 	Definir contador_brc, contador_salta, contador_bsas, contador_mendoza Como Entero
+	//CANTIDAD DE PASAJES A COMPRAR
 	Definir cant_pasajes_brc, cant_pasajes_salta, cant_pasajes_bsas, cant_pasajes_mendonza Como Entero
 	
 	Escribir "Bienvenidos a nuestro Sistema de venta de pasajes aéreos"
@@ -23,10 +24,12 @@ Proceso sin_titulo
 		Escribir "3. Buscar pasajero"
 		Escribir "4. Ordenar y mostrar lista pasajeros"
 		Escribir "5. Listado/s"
+		Escribir "SALIR"
 		Leer opcion_
+		mayus = Mayusculas(opcion_)
 		
 		Segun opcion_ Hacer
-			1:	
+			"1":	
 				Escribir "Seleccione a donde desea viajar:"
 				si contador_bariloche <> 120
 					Escribir "1. Buenos Aires - Bariloche" //120
@@ -165,7 +168,7 @@ Proceso sin_titulo
 							
 							Para s=0 Hasta cant_pasajes_salta-1 Hacer
 								
-								Mostrar "Ruta: Buenos Aires - Bariloche"
+								Mostrar "Ruta: Buenos Aires - Salta"
 								Mostrar "Nombre y Apellido: ", vuelo_Salta[s,0]
 								Mostrar "DNI: ", vuelo_Salta[s,1]
 								Mostrar "Telefono: ", vuelo_Salta[s,2]
@@ -198,13 +201,13 @@ Proceso sin_titulo
 						
 						
 					3:
-						Escribir "Su seleccion fue Rosario - Buenos Aires"
+						
 						si contador_bsas == 80 Entonces
 							Escribir "Opcion invalida, no quedan mas pasajes"
 						SiNo
 							
 							cant_pasajes_disponibles_bsas = 80 - contador_bsas
-							Escribir "Su seleccion fue Bueno Aires - Salta"
+							Escribir "Su seleccion fue Rosario - Buenos Aires"
 							
 							Escribir "Ingrese la cantidad de vuelos que va a comprar quedan disponibles: (", cant_pasajes_disponibles_bsas ")"
 							
@@ -242,7 +245,7 @@ Proceso sin_titulo
 							
 							Para b=0 Hasta cant_pasajes_bsas-1 Hacer
 								
-								Mostrar "Ruta: Buenos Aires - Bariloche"
+								Mostrar "Ruta: Rosario - Buenos Aires"
 								Mostrar "Nombre y Apellido: ", vuelo_Bsas[b,0]
 								Mostrar "DNI: ", vuelo_Bsas[b,1]
 								Mostrar "Telefono: ", vuelo_Bsas[b,2]
@@ -252,14 +255,14 @@ Proceso sin_titulo
 								vuelo_Bsas[b,6] = ConvertirATexto(contador_bsas)
 								Mostrar "Asiento: ", vuelo_Bsas[b,6]
 								
-								si contador_bsas <= 20 Entonces
-									vuelo_Bsas[b,5] = ConvertirATexto(120000)
+								si contador_bsas <= 10 Entonces
+									vuelo_Bsas[b,5] = ConvertirATexto(70000)
 									
 								SiNo
-									si contador_bsas > 20 y contador_bsas <= 60 Entonces
-										vuelo_Bsas[b,5] = ConvertirATexto(120000*1.1)
+									si contador_bsas > 10 y contador_bsas <= 40 Entonces
+										vuelo_Bsas[b,5] = ConvertirATexto(70000*1.15)
 									SiNo
-										vuelo_Bsas[b,5] = ConvertirATexto(150000)
+										vuelo_Bsas[b,5] = ConvertirATexto(95000)
 									FinSi
 								FinSi	
 								
@@ -279,16 +282,16 @@ Proceso sin_titulo
 						
 				Fin Segun
 				
-			2:
+			"2":
 				
-			3:
+			"3":
 				
-			4:
+			"4":
 				
-			5:
+			"5":
 				
 			De Otro Modo:
 				
 		Fin Segun
-Hasta Que opcion_ = 5
+Mientras Que mayus <> "SALIR"
 FinProceso
