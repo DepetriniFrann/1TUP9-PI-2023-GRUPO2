@@ -76,60 +76,10 @@ Proceso sin_titulo
 							FinMientras
 							
 							
+							solicitar_datos_pasajeros(vuelo_Brc, cant_pasajes_brc, contador_brc)
 							
-							Para i=0 Hasta cant_pasajes_brc-1 Hacer
-								
-								Escribir "Ingrese su Nombre y Apellido"
-								Leer vuelo_Brc[i,0]
-								Escribir "Ingrese su DNI"
-								Leer vuelo_Brc[i,1]
-								Escribir "Ingrese su Telefono"
-								Leer vuelo_Brc[i,2]
-								Escribir "Ingrese su Equipaje en Bodega: Si || si || No || no"
-								Leer vuelo_Brc[i,3]
-								//Mientras !(vuelo_Brc[i,3] == "Si" o vuelo_Brc[i,3] == "si" o vuelo_Brc[i,3] == "No" o vuelo_Brc[i,3] == "no") Hacer
-								//	Escribir "Las opciones solo pueden ser Si || si || No || no"
-								//	Leer vuelo_Brc[i,3]
-								//FinMientras
-								Si vuelo_Brc[i,3] == "si" o  vuelo_Brc[i,3] == "Si" Entonces
-									vuelo_Brc[i,3] = "Verdadero"
-								SiNo
-									vuelo_Brc[i,3] = "Falso"
-								Fin Si
-								Escribir "Ingrese su Numero de Pasajero"
-								Leer vuelo_Brc[i,4]
-							FinPara
-							
-							Para i=0 Hasta cant_pasajes_brc-1 Hacer
-								
-								Mostrar "Ruta: Buenos Aires - Bariloche"
-								Mostrar "Nombre y Apellido: ", vuelo_Brc[i,0]
-								Mostrar "DNI: ", vuelo_Brc[i,1]
-								Mostrar "Telefono: ", vuelo_Brc[i,2]
-								Mostrar "Equipaje en Bodega: ", vuelo_Brc[i,3]
-								Mostrar "Numero de Pasajero: ", vuelo_Brc[i,4]
-								contador_brc = contador_brc+1
-								vuelo_Brc[i,6] = ConvertirATexto(contador_brc)
-								Mostrar "Asiento: ", vuelo_Brc[i,6]
-								
-								si contador_brc <= 20 Entonces
-									vuelo_Brc[i,5] = ConvertirATexto(150000)
-									
-								SiNo
-									si contador_brc > 20 y contador_brc <= 60 Entonces
-										vuelo_Brc[i,5] = ConvertirATexto(150000*1.1)
-									SiNo
-										vuelo_Brc[i,5] = ConvertirATexto(180000)
-									FinSi
-								FinSi	
-								
-								si vuelo_Brc[i,3] == "Verdadero" Entonces
-									vuelo_Brc[i,5] = ConvertirATexto(ConvertirANumero(vuelo_Brc[i,5])* 1.05)
-								FinSi
-								Mostrar "Costo Pasaje: $", vuelo_Brc[i,5]
-								Escribir ""
-								
-							FinPara
+							Mostrar "Ruta: Buenos Aires - Bariloche"
+							mostrar_datos_pasajeros(vuelo_Brc, cant_pasajes_brc, contador_brc, opcion_venta)
 							
 						FinSi
 						
@@ -154,59 +104,9 @@ Proceso sin_titulo
 								Leer cant_pasajes_salta
 							FinMientras
 							
-							Para s=0 Hasta cant_pasajes_salta-1 Hacer
-								
-								Escribir "Ingrese su Nombre y Apellido"
-								Leer vuelo_Salta[s,0]
-								Escribir "Ingrese su DNI"
-								Leer vuelo_Salta[s,1]
-								Escribir "Ingrese su Telefono"
-								Leer vuelo_Salta[s,2]
-								Escribir "Ingrese su Equipaje en Bodega: Si || si || No || no"
-								Leer vuelo_Salta[s,3]
-								//Mientras !(vuelo_Salta[s,3] == "Si" o vuelo_Salta[s,3] == "si" o vuelo_Salta[s,3] == "No" o vuelo_Salta[s,3] == "no") Hacer
-								//	Escribir "Las opciones solo pueden ser Si || si || No || no"
-								//	Leer vuelo_Salta[s,3]
-								//FinMientras
-								Si vuelo_Salta[s,3] == "si" o vuelo_Salta[s,3] == "Si"  Entonces
-									vuelo_Salta[s,3] = "Verdadero"
-								SiNo
-									vuelo_Salta[s,3] = "Falso"
-								Fin Si
-								Escribir "Ingrese su Numero de Pasajero"
-								Leer vuelo_Salta[s,4]
-							FinPara
-							
-							Para s=0 Hasta cant_pasajes_salta-1 Hacer
-								
-								Mostrar "Ruta: Buenos Aires - Salta"
-								Mostrar "Nombre y Apellido: ", vuelo_Salta[s,0]
-								Mostrar "DNI: ", vuelo_Salta[s,1]
-								Mostrar "Telefono: ", vuelo_Salta[s,2]
-								Mostrar "Equipaje en Bodega: ", vuelo_Salta[s,3]
-								Mostrar "Numero de Pasajero: ", vuelo_Salta[s,4]
-								contador_salta = contador_salta+1
-								vuelo_Salta[s,6] = ConvertirATexto(contador_salta)
-								Mostrar "Asiento: ", vuelo_Salta[s,6]
-								
-								si contador_salta <= 20 Entonces
-									vuelo_Salta[s,5] = ConvertirATexto(120000)
-									
-								SiNo
-									si contador_salta > 20 y contador_salta <= 60 Entonces
-										vuelo_Salta[s,5] = ConvertirATexto(120000*1.1)
-									SiNo
-										vuelo_Salta[s,5] = ConvertirATexto(150000)
-									FinSi
-								FinSi	
-								
-								si vuelo_Salta[s,3] == "Verdadero" Entonces
-									vuelo_Salta[s,5] = ConvertirATexto(ConvertirANumero(vuelo_Salta[s,5])* 1.05)
-								FinSi
-								Mostrar "Costo Pasaje: $", vuelo_Salta[s,5]
-								Escribir ""
-								
-							FinPara
+							solicitar_datos_pasajeros(vuelo_Salta, cant_pasajes_salta, contador_salta)
+							Mostrar "Ruta: Buenos Aires - Salta"
+							mostrar_datos_pasajeros(vuelo_Salta, cant_pasajes_salta, contador_salta, opcion_venta)
 							
 						FinSi
 						
@@ -231,59 +131,10 @@ Proceso sin_titulo
 								Leer cant_pasajes_bsas
 							FinMientras
 							
-							Para b=0 Hasta cant_pasajes_bsas-1 Hacer
-								
-								Escribir "Ingrese su Nombre y Apellido"
-								Leer vuelo_Bsas[b,0]
-								Escribir "Ingrese su DNI"
-								Leer vuelo_Bsas[b,1]
-								Escribir "Ingrese su Telefono"
-								Leer vuelo_Bsas[b,2]
-								Escribir "Ingrese su Equipaje en Bodega: Si || si || No || no"
-								Leer vuelo_Bsas[b,3]
-								//Mientras !(vuelo_Bsas[b,3] == "Si" o vuelo_Bsas[b,3] == "si" o vuelo_Bsas[b,3] == "No" o vuelo_Bsas[b,3] == "no") Hacer
-								//	Escribir "Las opciones solo pueden ser Si || si || No || no"
-								//	Leer vuelo_Bsas[b,3]
-								//FinMientras
-								Si vuelo_Bsas[b,3] == "si" o vuelo_Bsas[b,3] == "Si"  Entonces
-									vuelo_Bsas[b,3] = "Verdadero"
-								SiNo
-									vuelo_Bsas[b,3] = "Falso"
-								Fin Si
-								Escribir "Ingrese su Numero de Pasajero"
-								Leer vuelo_Bsas[b,4]
-							FinPara
 							
-							Para b=0 Hasta cant_pasajes_bsas-1 Hacer
-								
-								Mostrar "Ruta: Rosario - Buenos Aires"
-								Mostrar "Nombre y Apellido: ", vuelo_Bsas[b,0]
-								Mostrar "DNI: ", vuelo_Bsas[b,1]
-								Mostrar "Telefono: ", vuelo_Bsas[b,2]
-								Mostrar "Equipaje en Bodega: ", vuelo_Bsas[b,3]
-								Mostrar "Numero de Pasajero: ", vuelo_Bsas[b,4]
-								contador_bsas = contador_bsas+1
-								vuelo_Bsas[b,6] = ConvertirATexto(contador_bsas)
-								Mostrar "Asiento: ", vuelo_Bsas[b,6]
-								
-								si contador_bsas <= 10 Entonces
-									vuelo_Bsas[b,5] = ConvertirATexto(70000)
-									
-								SiNo
-									si contador_bsas > 10 y contador_bsas <= 40 Entonces
-										vuelo_Bsas[b,5] = ConvertirATexto(70000*1.15)
-									SiNo
-										vuelo_Bsas[b,5] = ConvertirATexto(95000)
-									FinSi
-								FinSi	
-								
-								si vuelo_Bsas[b,3] == "Verdadero" Entonces
-									vuelo_Bsas[b,5] = ConvertirATexto(ConvertirANumero(vuelo_Bsas[b,5])* 1.05)
-								FinSi
-								Mostrar "Costo Pasaje: $", vuelo_Bsas[b,5]
-								Escribir ""
-								
-							FinPara
+							solicitar_datos_pasajeros(vuelo_Bsas, cant_pasajes_bsas, contador_bsas)
+							Mostrar "Ruta: Rosario - Buenos Aires"
+							mostrar_datos_pasajeros(vuelo_Bsas, cant_pasajes_bsas, contador_bsas, opcion_venta)
 							
 						FinSi
 						
@@ -304,54 +155,11 @@ Proceso sin_titulo
 								Leer cant_pasajes_mendoza
 							FinMientras
 							
-							Para m = 0 Hasta cant_pasajes_mendoza-1 Hacer
-								
-								escribir "ingrese su nombre y apellido"
-								leer vuelo_Mendoza[m,0]
-								escribir "ingrese su dni"
-								leer vuelo_Mendoza[m,1]
-								escribir "ingrese su número de teléfono"
-								leer vuelo_Mendoza[m,2]
-								Escribir "Desea que su equipaje sea llevado en la bodega? Si || si || No || no"
-								Leer vuelo_Mendoza[m,3] 
-								si vuelo_Mendoza[m,3] == "Si" o vuelo_Mendoza[m,3] == "si" Entonces
-									vuelo_Mendoza[m,3] ="Verdadero"
-								SiNo
-									vuelo_Mendoza[m,3] ="Falso"
-								FinSi
-								Escribir "ingrese su número de pasajero"
-								leer vuelo_Mendoza[m,4]
-							FinPara
+							solicitar_datos_pasajeros(vuelo_Mendoza, cant_pasajes_mendoza, contador_mendoza)
 							
-							Para m=0 Hasta cant_pasajes_mendoza-1 Hacer
-								
-								mostrar "Ruta: Mar Del Plata - Mendoza"
-								Mostrar "Nombre y apellido: ", vuelo_Mendoza[m,0]
-								mostrar "DNI: ", vuelo_Mendoza[m,1]
-								Mostrar "número de teléfono: ", vuelo_Mendoza[m,2]
-								Mostrar "equipaje en bodega: ", vuelo_Mendoza[m,3]
-								Mostrar "número de pasajero: ", vuelo_Mendoza[m,4]
-								contador_mendoza = contador_mendoza+1
-								vuelo_Mendoza[m,6] = ConvertirATexto(contador_mendoza)
-								Mostrar "asiento: ", vuelo_Mendoza[m,6]
-								
-								si contador_mendoza <= 10 Entonces
-									vuelo_Mendoza[m,5] = ConvertirATexto(95000)
-								SiNo
-									si contador_mendoza > 10 y contador_mendoza <= 40 Entonces
-										vuelo_Mendoza[m,5] = ConvertirATexto(95000*1.15)
-									SiNo
-										vuelo_Mendoza[m,5] = ConvertirATexto(125000)
-									FinSi
-								FinSi
-								
-								si vuelo_Mendoza[m,3] = "Verdadero" Entonces
-									vuelo_Mendoza[m,5] =ConvertirATexto(ConvertirANumero(vuelo_Mendoza[m,5])*1.05)
-								FinSi
-								Mostrar "Costo del pasaje: $", vuelo_Mendoza[m,5]
-								Escribir ""
-								
-							FinPara
+							mostrar "Ruta: Mar Del Plata - Mendoza"
+							mostrar_datos_pasajeros(vuelo_Mendoza, cant_pasajes_mendoza, contador_mendoza, opcion_venta)
+							
 						FinSi
 						
 					De Otro Modo:
@@ -369,5 +177,67 @@ Proceso sin_titulo
 			De Otro Modo:
 				
 		Fin Segun
-Mientras Que mayus <> "SALIR"
+	Mientras Que mayus <> "SALIR"
+	
 FinProceso
+
+
+SubProceso solicitar_datos_pasajeros(arreglo, cantidad_pasajes, contador)
+	
+	Para m = contador Hasta (contador + cantidad_pasajes)-1 Hacer
+		
+		escribir "ingrese su nombre y apellido"
+		leer arreglo[m,0]
+		escribir "ingrese su dni"
+		leer arreglo[m,1]
+		escribir "ingrese su número de teléfono"
+		leer arreglo[m,2]
+		Escribir "Desea que su equipaje sea llevado en la bodega? Si || si || No || no"
+		Leer arreglo[m,3] 
+		si arreglo[m,3] == "Si" o arreglo[m,3] == "si" Entonces
+			arreglo[m,3] ="Verdadero"
+		SiNo
+			arreglo[m,3] ="Falso"
+		FinSi
+		Escribir "ingrese su número de pasajero"
+		leer arreglo[m,4]
+	FinPara
+	
+FinSubProceso
+
+SubProceso mostrar_datos_pasajeros(arreglo, cantidad_pasajes, contador, opcion_vuelo)
+	Para m = contador Hasta (contador + cantidad_pasajes)-1 Hacer
+		
+		Mostrar "Nombre y apellido: ", arreglo[m,0]
+		mostrar "DNI: ", arreglo[m,1]
+		Mostrar "número de teléfono: ", arreglo[m,2]
+		Mostrar "equipaje en bodega: ", arreglo[m,3]
+		Mostrar "número de pasajero: ", arreglo[m,4]
+		contador = contador+1
+		arreglo[m,6] = ConvertirATexto(contador)
+		Mostrar "asiento: ", arreglo[m,6]
+		si opcion_vuelo = 4 Entonces
+			si contador <= 10 Entonces
+				arreglo[m,5] = ConvertirATexto(95000)
+			SiNo
+				si contador > 10 y contador <= 40 Entonces
+					arreglo[m,5] = ConvertirATexto(95000*1.15)
+				SiNo
+					arreglo[m,5] = ConvertirATexto(125000)
+				FinSi
+			FinSi
+		SiNo
+			si opcion_vuelo = 3 Entonces
+				
+			FinSi
+		FinSi
+		
+		
+		si arreglo[m,3] = "Verdadero" Entonces
+			arreglo[m,5] =ConvertirATexto(ConvertirANumero(arreglo[m,5])*1.05)
+		FinSi
+		Mostrar "Costo del pasaje: $", arreglo[m,5]
+		Escribir ""
+		
+	FinPara
+FinSubProceso
