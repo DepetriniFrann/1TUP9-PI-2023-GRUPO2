@@ -1,13 +1,18 @@
 Proceso sin_titulo
-	Definir opcion_, opcion_venta, contador_bariloche Como Entero
+	
 	Definir nombre_apellido, equipaje_en_bodega Como Caracter
-	Definir dni, telefono, numero_pasajero, cant_pasajes_brc, cant_pasajes_disponibles_brc  Como Entero
-	Definir cant_pasajes_salta, cant_pasajes_disponibles_salta, contador_salta Como Entero
-	Definir costo_pasaje Como Real
-	Definir vuelo_Brc, vuelo_Salta, vuelo_BsAs, vuelo_Mendoza Como Caracter
+	Definir dni, telefono, numero_pasajero, opcion_, opcion_venta Como Entero
+	
+	Definir  cant_pasajes_disponibles_salta , cant_pasajes_disponibles_brc, cant_pasajes_disponibles_bsas, cant_pasajes_disponibles_mdz  Como Entero
+	
+	Definir vuelo_Brc, vuelo_Salta, vuelo_Bsas, vuelo_Mendoza Como Caracter
 	Dimension vuelo_Brc[120,7]
 	Dimension vuelo_Salta[120,7]
+	Dimension vuelo_Bsas[80,7]
+	Dimension vuelo_Mendoza[80,7]
 	
+	Definir contador_brc, contador_salta, contador_bsas, contador_mendoza Como Entero
+	Definir cant_pasajes_brc, cant_pasajes_salta, cant_pasajes_bsas, cant_pasajes_mendonza Como Entero
 	
 	Escribir "Bienvenidos a nuestro Sistema de venta de pasajes aéreos"
 	Repetir
@@ -29,38 +34,32 @@ Proceso sin_titulo
 				si contador_salta <> 120 Entonces
 					Escribir "2. Bueno Aires - Salta"      //120
 				FinSi
-				Escribir "3. Rosario - Buenos Aires"   //80
-				Escribir "4. Mar Del Plata - Mendoza"  //80
+				si contador_bsas <> 80 Entonces
+					Escribir "3. Rosario - Buenos Aires"   //80
+				FinSi
+				si contador_mendoza <> 80 Entonces
+					Escribir "4. Mar Del Plata - Mendoza"   //80
+				FinSi
+				
 				Leer opcion_venta
 				
 				Segun opcion_venta Hacer
 					1:	si contador_brc == 120 Entonces
 							Escribir "Opcion invalida, no quedan mas pasajes"
 						SiNo
-							cant_pasajes_disponibles_brc = 120
-							cant_pasajes_disponibles_brc = cant_pasajes_disponibles_brc  - contador_brc
+							
+							cant_pasajes_disponibles_brc = 120  - contador_brc
 							Escribir "Su seleccion fue Buenos Aires - Bariloche"
 							
-							Escribir "Ingrese la cantidad de vuelos que va a comprar quedan disponibles: (", cant_pasajes_disponibles_brc  ")"
+							Escribir "Ingrese la cantidad de vuelos que va a comprar (Quedan disponibles: ", cant_pasajes_disponibles_brc  ")"
 							
-							Repetir
-								Leer cant_pasajes_brc
-								si cant_pasajes_brc > cant_pasajes_disponibles_brc Entonces
-										Escribir "Ha superado la cantidad de pasajes disponible"
-										Escribir "Solo quedan: " cant_pasajes_disponibles_brc 
-										Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
-								FinSi
-							Mientras Que cant_pasajes_brc > cant_pasajes_disponibles_brc
-							
-							
-							
-							
-							//Mientras (cant_pasajes_brc + contador_brc) > 120 o cant_pasajes_brc > 120 Hacer
-							//	Escribir "Ha superado la cantidad de pasajes disponible"
-							//	Escribir "Solo quedan: " cant_pasajes_disponibles_brc 
-							//	Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
-							//	Leer cant_pasajes
-							//FinMientras
+							Leer cant_pasajes_brc
+							Mientras (cant_pasajes_brc + contador_brc) > 120 o cant_pasajes_brc > 120 Hacer
+								Escribir "Ha superado la cantidad de pasajes disponible"
+								Escribir "Solo quedan: " cant_pasajes_disponibles_brc 
+								Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+							Leer cant_pasajes_brc
+							FinMientras
 							
 							
 							
@@ -74,10 +73,10 @@ Proceso sin_titulo
 								Leer vuelo_Brc[i,2]
 								Escribir "Ingrese su Equipaje en Bodega: Si || si || No || no"
 								Leer vuelo_Brc[i,3]
-								Mientras !(vuelo_Brc[i,3] == "Si" o vuelo_Brc[i,3] == "si" o vuelo_Brc[i,3] == "No" o vuelo_Brc[i,3] == "no") Hacer
-									Escribir "Las opciones solo pueden ser Si || si || No || no"
-									Leer vuelo_Brc[i,3]
-								FinMientras
+								//Mientras !(vuelo_Brc[i,3] == "Si" o vuelo_Brc[i,3] == "si" o vuelo_Brc[i,3] == "No" o vuelo_Brc[i,3] == "no") Hacer
+								//	Escribir "Las opciones solo pueden ser Si || si || No || no"
+								//	Leer vuelo_Brc[i,3]
+								//FinMientras
 								Si vuelo_Brc[i,3] == "si" o  vuelo_Brc[i,3] == "Si" Entonces
 									vuelo_Brc[i,3] = "Verdadero"
 								SiNo
@@ -126,30 +125,20 @@ Proceso sin_titulo
 						si contador_salta == 120 Entonces
 							Escribir "Opcion invalida, no quedan mas pasajes"
 						SiNo
-							cant_pasajes_disponibles_salta = 120
-							cant_pasajes_disponibles_salta = cant_pasajes_disponibles_salta - contador_salta
+							
+							cant_pasajes_disponibles_salta = 120 - contador_salta
 							Escribir "Su seleccion fue Bueno Aires - Salta"
 							
 							Escribir "Ingrese la cantidad de vuelos que va a comprar quedan disponibles: (", cant_pasajes_disponibles_salta ")"
 							
-							
-							
-							Repetir
+							Leer cant_pasajes_salta
+								
+							Mientras (cant_pasajes_salta + contador_salta) > 120 o cant_pasajes_brc > 120 Hacer
+								Escribir "Ha superado la cantidad de pasajes disponible"
+								Escribir "Solo quedan: " cant_pasajes_disponibles_salta 
+								Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
 								Leer cant_pasajes_salta
-								si cant_pasajes_salta > cant_pasajes_disponibles_salta Entonces
-									Escribir "Ha superado la cantidad de pasajes disponible"
-									Escribir "Solo quedan: " cant_pasajes_disponibles_salta 
-									Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
-								FinSi
-							Mientras Que cant_pasajes_salta > cant_pasajes_disponibles_salta
-							
-							
-							//Mientras (cant_pasajes_salta + contador_salta) > 120 o cant_pasajes_salta > 120  Hacer
-							//	Escribir "Ha superado la cantidad de pasajes disponible"
-							//	Escribir "Solo quedan: " cant_pasajes_disponibles_salta
-							//	Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
-							//	Leer cant_pasajes_salta
-							//FinMientras
+							FinMientras
 							
 							Para s=0 Hasta cant_pasajes_salta-1 Hacer
 								
@@ -161,10 +150,10 @@ Proceso sin_titulo
 								Leer vuelo_Salta[s,2]
 								Escribir "Ingrese su Equipaje en Bodega: Si || si || No || no"
 								Leer vuelo_Salta[s,3]
-								Mientras !(vuelo_Salta[s,3] == "Si" o vuelo_Salta[s,3] == "si" o vuelo_Salta[s,3] == "No" o vuelo_Salta[s,3] == "no") Hacer
-									Escribir "Las opciones solo pueden ser Si || si || No || no"
-									Leer vuelo_Salta[s,3]
-								FinMientras
+								//Mientras !(vuelo_Salta[s,3] == "Si" o vuelo_Salta[s,3] == "si" o vuelo_Salta[s,3] == "No" o vuelo_Salta[s,3] == "no") Hacer
+								//	Escribir "Las opciones solo pueden ser Si || si || No || no"
+								//	Leer vuelo_Salta[s,3]
+								//FinMientras
 								Si vuelo_Salta[s,3] == "si" o vuelo_Salta[s,3] == "Si"  Entonces
 									vuelo_Salta[s,3] = "Verdadero"
 								SiNo
@@ -210,6 +199,80 @@ Proceso sin_titulo
 						
 					3:
 						Escribir "Su seleccion fue Rosario - Buenos Aires"
+						si contador_bsas == 80 Entonces
+							Escribir "Opcion invalida, no quedan mas pasajes"
+						SiNo
+							
+							cant_pasajes_disponibles_bsas = 80 - contador_bsas
+							Escribir "Su seleccion fue Bueno Aires - Salta"
+							
+							Escribir "Ingrese la cantidad de vuelos que va a comprar quedan disponibles: (", cant_pasajes_disponibles_bsas ")"
+							
+							Leer cant_pasajes_bsas
+							
+							Mientras (cant_pasajes_bsas + contador_bsas) > 80 o cant_pasajes_bsas > 80 Hacer
+								Escribir "Ha superado la cantidad de pasajes disponible"
+								Escribir "Solo quedan: " cant_pasajes_disponibles_bsas 
+								Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+								Leer cant_pasajes_bsas
+							FinMientras
+							
+							Para b=0 Hasta cant_pasajes_bsas-1 Hacer
+								
+								Escribir "Ingrese su Nombre y Apellido"
+								Leer vuelo_Bsas[b,0]
+								Escribir "Ingrese su DNI"
+								Leer vuelo_Bsas[b,1]
+								Escribir "Ingrese su Telefono"
+								Leer vuelo_Bsas[b,2]
+								Escribir "Ingrese su Equipaje en Bodega: Si || si || No || no"
+								Leer vuelo_Bsas[b,3]
+								//Mientras !(vuelo_Bsas[b,3] == "Si" o vuelo_Bsas[b,3] == "si" o vuelo_Bsas[b,3] == "No" o vuelo_Bsas[b,3] == "no") Hacer
+								//	Escribir "Las opciones solo pueden ser Si || si || No || no"
+								//	Leer vuelo_Bsas[b,3]
+								//FinMientras
+								Si vuelo_Bsas[b,3] == "si" o vuelo_Bsas[b,3] == "Si"  Entonces
+									vuelo_Bsas[b,3] = "Verdadero"
+								SiNo
+									vuelo_Bsas[b,3] = "Falso"
+								Fin Si
+								Escribir "Ingrese su Numero de Pasajero"
+								Leer vuelo_Bsas[b,4]
+							FinPara
+							
+							Para b=0 Hasta cant_pasajes_bsas-1 Hacer
+								
+								Mostrar "Ruta: Buenos Aires - Bariloche"
+								Mostrar "Nombre y Apellido: ", vuelo_Bsas[b,0]
+								Mostrar "DNI: ", vuelo_Bsas[b,1]
+								Mostrar "Telefono: ", vuelo_Bsas[b,2]
+								Mostrar "Equipaje en Bodega: ", vuelo_Bsas[b,3]
+								Mostrar "Numero de Pasajero: ", vuelo_Bsas[b,4]
+								contador_bsas = contador_bsas+1
+								vuelo_Bsas[b,6] = ConvertirATexto(contador_bsas)
+								Mostrar "Asiento: ", vuelo_Bsas[b,6]
+								
+								si contador_bsas <= 20 Entonces
+									vuelo_Bsas[b,5] = ConvertirATexto(120000)
+									
+								SiNo
+									si contador_bsas > 20 y contador_bsas <= 60 Entonces
+										vuelo_Bsas[b,5] = ConvertirATexto(120000*1.1)
+									SiNo
+										vuelo_Bsas[b,5] = ConvertirATexto(150000)
+									FinSi
+								FinSi	
+								
+								si vuelo_Bsas[b,3] == "Verdadero" Entonces
+									vuelo_Bsas[b,5] = ConvertirATexto(ConvertirANumero(vuelo_Bsas[b,5])* 1.05)
+								FinSi
+								Mostrar "Costo Pasaje: $", vuelo_Bsas[b,5]
+								Escribir ""
+								
+							FinPara
+							
+						FinSi
+						
 					4:
 						Escribir "Su seleccion fue Mar Del Plata - Mendoza"
 					De Otro Modo:
