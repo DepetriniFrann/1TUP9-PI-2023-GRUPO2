@@ -25,8 +25,19 @@ Proceso sin_titulo
 		Escribir "4. Ordenar y mostrar lista pasajeros"
 		Escribir "5. Listado/s"
 		Escribir "SALIR"
-		Leer opcion_
-		mayus = Mayusculas(opcion_)
+		
+		Repetir
+			
+			Leer opcion_
+			mayus = Mayusculas(opcion_)
+			
+			si opcion_ <> "1" y opcion_ <> "2" y opcion_ <> "3" y opcion_ <> "4" y opcion_ <> "5" y mayus <> "SALIR" Entonces
+				Escribir "Dato incorrecto"
+				Escribir "Ingrese un numero del 1 al 5 o salir"
+			FinSi
+			
+		Hasta Que opcion_ = "1" o opcion_ = "2" o opcion_ = "3" o opcion_ = "4" o opcion_ = "5" o mayus = "SALIR" 
+		
 		
 		Segun opcion_ Hacer
 			"1":	
