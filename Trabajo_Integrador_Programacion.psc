@@ -182,7 +182,7 @@ Proceso sin_titulo
 FinProceso
 
 
-SubProceso solicitar_datos_pasajeros(arreglo, cantidad_pasajes, contador)
+SubProceso solicitar_datos_pasajeros(arreglo Por Referencia, cantidad_pasajes Por Referencia, contador Por Referencia)
 	
 	Para m = contador Hasta (contador + cantidad_pasajes)-1 Hacer
 		
@@ -205,32 +205,49 @@ SubProceso solicitar_datos_pasajeros(arreglo, cantidad_pasajes, contador)
 	
 FinSubProceso
 
-SubProceso mostrar_datos_pasajeros(arreglo, cantidad_pasajes, contador, opcion_vuelo)
+SubProceso mostrar_datos_pasajeros(arreglo, cantidad_pasajes, contador Por Referencia, opcion_vuelo)
+	Definir costo, costoFinal, recargo Como Real
+	
 	Para m = contador Hasta (contador + cantidad_pasajes)-1 Hacer
-		
+		contador = contador+1
 		Mostrar "Nombre y apellido: ", arreglo[m,0]
 		mostrar "DNI: ", arreglo[m,1]
 		Mostrar "número de teléfono: ", arreglo[m,2]
 		Mostrar "equipaje en bodega: ", arreglo[m,3]
 		Mostrar "número de pasajero: ", arreglo[m,4]
-		contador = contador+1
+		
 		arreglo[m,6] = ConvertirATexto(contador)
 		Mostrar "asiento: ", arreglo[m,6]
-		si opcion_vuelo = 4 Entonces
-			si contador <= 10 Entonces
-				arreglo[m,5] = ConvertirATexto(95000)
+		
+		Segun opcion_vuelo Hacer
+			1: costo = 150000
+				costoFinal = 180000
+				recargo = 1.1
+			2:costo = 120000
+				costoFinal = 150000
+			recargo = 1.1
+			3:costo = 70000
+				costoFinal = 95000
+			recargo= 1.15
+			4:costo = 95000
+				costoFinal = 125000 
+			recargo= 1.15
+		FinSegun
+		//si opcion_vuelo = 4 Entonces
+		si contador <= 10 Entonces
+			arreglo[m,5] = ConvertirATexto(costo)
 			SiNo
-				si contador > 10 y contador <= 40 Entonces
-					arreglo[m,5] = ConvertirATexto(95000*1.15)
-				SiNo
-					arreglo[m,5] = ConvertirATexto(125000)
-				FinSi
-			FinSi
-		SiNo
-			si opcion_vuelo = 3 Entonces
-				
+			si contador > 10 y contador <= 40 Entonces
+				arreglo[m,5] = ConvertirATexto(costo*recargo)
+			SiNo
+				arreglo[m,5] = ConvertirATexto(costoFinal)
 			FinSi
 		FinSi
+		//SiNo
+		//	si opcion_vuelo = 3 Entonces
+				
+		//	FinSi
+		//FinSi
 		
 		
 		si arreglo[m,3] = "Verdadero" Entonces
