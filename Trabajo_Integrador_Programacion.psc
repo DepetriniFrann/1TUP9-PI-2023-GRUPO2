@@ -288,7 +288,72 @@ Proceso sin_titulo
 						FinSi
 						
 					4:
-						Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+						si contador_mendoza == 80 Entonces
+							escribir "opcion invalida, no quedan mas pasajes "
+						SiNo
+							cant_pasajes_disponibles_mdz = 80 - contador_mendoza
+							Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+							
+							Escribir "ingrese la cantidad de vuelos que va a comprar. Quedan disponibles: (" cant_pasajes_disponibles_mdz ")"
+							Leer cant_pasajes_mendoza
+							
+							Mientras (cant_pasajes_mendoza + contador_mendoza) > 80 o cant_pasajes_mendoza > 80 Hacer
+								Escribir "Ha superado la cantidad de pasajes disponible"
+								Escribir "Solo quedan: " cant_pasajes_disponibles_mdz 
+								Escribir "Vuelva a ingresar la cantidad de pasajes a comprar"
+								Leer cant_pasajes_mendoza
+							FinMientras
+							
+							Para m = 0 Hasta cant_pasajes_mendoza-1 Hacer
+								
+								escribir "ingrese su nombre y apellido"
+								leer vuelo_Mendoza[m,0]
+								escribir "ingrese su dni"
+								leer vuelo_Mendoza[m,1]
+								escribir "ingrese su número de teléfono"
+								leer vuelo_Mendoza[m,2]
+								Escribir "Desea que su equipaje sea llevado en la bodega? Si || si || No || no"
+								Leer vuelo_Mendoza[m,3] 
+								si vuelo_Mendoza[m,3] == "Si" o vuelo_Mendoza[m,3] == "si" Entonces
+									vuelo_Mendoza[m,3] ="Verdadero"
+								SiNo
+									vuelo_Mendoza[m,3] ="Falso"
+								FinSi
+								Escribir "ingrese su número de pasajero"
+								leer vuelo_Mendoza[m,4]
+							FinPara
+							
+							Para m=0 Hasta cant_pasajes_mendoza-1 Hacer
+								
+								mostrar "Ruta: Mar Del Plata - Mendoza"
+								Mostrar "Nombre y apellido: ", vuelo_Mendoza[m,0]
+								mostrar "DNI: ", vuelo_Mendoza[m,1]
+								Mostrar "número de teléfono: ", vuelo_Mendoza[m,2]
+								Mostrar "equipaje en bodega: ", vuelo_Mendoza[m,3]
+								Mostrar "número de pasajero: ", vuelo_Mendoza[m,4]
+								contador_mendoza = contador_mendoza+1
+								vuelo_Mendoza[m,6] = ConvertirATexto(contador_mendoza)
+								Mostrar "asiento: ", vuelo_Mendoza[m,6]
+								
+								si contador_mendoza <= 10 Entonces
+									vuelo_Mendoza[m,5] = ConvertirATexto(95000)
+								SiNo
+									si contador_mendoza > 10 y contador_mendoza <= 40 Entonces
+										vuelo_Mendoza[m,5] = ConvertirATexto(95000*1.15)
+									SiNo
+										vuelo_Mendoza[m,5] = ConvertirATexto(125000)
+									FinSi
+								FinSi
+								
+								si vuelo_Mendoza[m,3] = "Verdadero" Entonces
+									vuelo_Mendoza[m,5] =ConvertirATexto(ConvertirANumero(vuelo_Mendoza[m,5])*1.05)
+								FinSi
+								Mostrar "Costo del pasaje: $", vuelo_Mendoza[m,5]
+								Escribir ""
+								
+							FinPara
+						FinSi
+						
 					De Otro Modo:
 						
 				Fin Segun
