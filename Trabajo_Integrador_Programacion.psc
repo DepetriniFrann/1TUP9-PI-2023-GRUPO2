@@ -333,14 +333,17 @@ SubProceso mostrar_pasajero_buscado(arreglo,buscar_asiento, opcion_venta, datos_
 	Segun opcion_venta Hacer
 		1:
 			busqueda_limite = 120
+			ruta = "Ruta: Buenos Aires - Bariloche"
 		2:
 			busqueda_limite = 120
+			ruta = "Ruta: Bueno Aires - Salta"
 		3:
 			busqueda_limite = 80
+			ruta = "Ruta: Rosario - Buenos Aires"
 		4:
 			busqueda_limite = 80
+			ruta = "Ruta: Mar Del Plata - Mendoza"
 	Fin Segun
-	
 	
 	Repetir
 		Leer buscar_asiento
@@ -348,13 +351,28 @@ SubProceso mostrar_pasajero_buscado(arreglo,buscar_asiento, opcion_venta, datos_
 			Escribir "Se paso del limite maximo de busqueda"
 		FinSi
 	Hasta Que buscar_asiento <= busqueda_limite
-	Para b = 0 Hasta busqueda_limite-1 Hacer
-		Para a = 0 Hasta 6 Hacer
-			si arreglo[b,6] == ConvertirATexto(buscar_asiento) Entonces
+	
+	elementoEncontrado = Falso;
+	Mientras b <= busqueda_limite -1 y no elementoEncontrado Hacer
+		
+		si arreglo[b,6] == ConvertirATexto(buscar_asiento) Entonces
+			
+			elementoEncontrado = Verdadero
+			
+			Mostrar ruta
+			Para a = 0 Hasta 6 Hacer
 				
 				Mostrar Concatenar(datos_Cargados[a],arreglo[b,a])
 				
-			FinSi
-		FinPara
-	FinPara
+			FinPara
+			
+		FinSi
+		b = b + 1
+		
+	FinMientras
+	
+	Si no elementoEncontrado Entonces
+		Escribir "No se encontro el pasajero";
+	FinSi
+	
 FinSubProceso
