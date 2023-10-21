@@ -1,5 +1,5 @@
 Proceso sin_titulo
-	
+	Definir datos_Cargados Como Caracter
 	Definir nombre_apellido, equipaje_en_bodega, opcion_ Como Caracter
 	Definir dni, telefono, numero_pasajero, opcion_venta Como Entero
 	//CANTIDAD DE PASAJES DISPONIBLES
@@ -14,6 +14,18 @@ Proceso sin_titulo
 	Definir contador_brc, contador_salta, contador_bsas, contador_mendoza Como Entero
 	//CANTIDAD DE PASAJES A COMPRAR
 	Definir cant_pasajes_brc, cant_pasajes_salta, cant_pasajes_bsas, cant_pasajes_mendonza Como Entero
+	
+	//BUSCAR PASAJERO POR NUMERO DE ASIENTO
+	Definir buscar_asiento Como Entero
+	
+	Dimension datos_Cargados[7]
+	datos_Cargados[0] = "Nombre y Apellido: "
+	datos_Cargados[1] = "DNI: "
+	datos_Cargados[2] = "Telefono: "
+	datos_Cargados[3] = "Equipaje en Bodego: "
+	datos_Cargados[4] = "Numero de Pasajero: "
+	datos_Cargados[5] = "Precio: $"
+	datos_Cargados[6] = "Asiento: "
 	
 	Escribir "Bienvenidos a nuestro Sistema de venta de pasajes aéreos"
 	Repetir
@@ -168,8 +180,48 @@ Proceso sin_titulo
 				
 			"2":
 				
+				Escribir "Ingrese en que vuelo quiere buscar al pasajero"
+				Escribir "1. Buenos Aires - Bariloche" //120
+				Escribir "2. Bueno Aires - Salta"      //120
+				Escribir "3. Rosario - Buenos Aires"   //80
+				Escribir "4. Mar Del Plata - Mendoza"  //80
+				Leer opcion_venta
+				
+				Segun opcion_venta Hacer
+					1:
+						Escribir "Su seleccion fue Buenos Aires - Bariloche"
+						mostrar_pasajero_buscado(vuelo_Brc, buscar_asiento, opcion_venta, datos_Cargados)
+						
+					2:
+						Escribir "Su seleccion fue Bueno Aires - Salta"
+						mostrar_pasajero_buscado(vuelo_Salta, buscar_asiento, opcion_venta, datos_Cargados)
+					3:
+						Escribir "Su seleccion fue Rosario - Buenos Aires"
+						mostrar_pasajero_buscado(vuelo_Bsas, buscar_asiento, opcion_venta, datos_Cargados)
+					4:
+						Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+						mostrar_pasajero_buscado(vuelo_Mendoza, buscar_asiento, opcion_venta, datos_Cargados)
+				Fin Segun
+				
 			"3":
 				
+				Escribir "Ingrese en que vuelo quiere buscar al pasajero"
+				Escribir "1. Buenos Aires - Bariloche" //120
+				Escribir "2. Bueno Aires - Salta"      //120
+				Escribir "3. Rosario - Buenos Aires"   //80
+				Escribir "4. Mar Del Plata - Mendoza"  //80
+				Leer opcion_venta
+				
+				Segun opcion_venta Hacer
+					1:
+						Escribir "Su seleccion fue Buenos Aires - Bariloche"
+					2:
+						Escribir "Su seleccion fue Bueno Aires - Salta"
+					3:
+						Escribir "Su seleccion fue Rosario - Buenos Aires"
+					4:
+						Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+				Fin Segun
 			"4":
 				
 			"5":
@@ -181,6 +233,8 @@ Proceso sin_titulo
 	
 FinProceso
 
+
+//INGRESA LOS DATOS DEL PASAJERO
 
 SubProceso solicitar_datos_pasajeros(arreglo Por Referencia, cantidad_pasajes Por Referencia, contador Por Referencia)
 	
@@ -205,6 +259,9 @@ SubProceso solicitar_datos_pasajeros(arreglo Por Referencia, cantidad_pasajes Po
 	
 FinSubProceso
 
+
+//MUESTRA LOS DATOS DEL PASAJERO INGRESADO
+
 SubProceso mostrar_datos_pasajeros(arreglo, cantidad_pasajes, contador Por Referencia, opcion_vuelo)
 	Definir costo, costoFinal, recargo Como Real
 	
@@ -223,21 +280,29 @@ SubProceso mostrar_datos_pasajeros(arreglo, cantidad_pasajes, contador Por Refer
 			1: costo = 150000
 				costoFinal = 180000
 				recargo = 1.1
+				pasajes = 20
+				pasajesMax = 60
 			2:costo = 120000
 				costoFinal = 150000
-			recargo = 1.1
+				recargo = 1.1
+				pasajes = 20
+				pasajesMax = 60
 			3:costo = 70000
 				costoFinal = 95000
-			recargo= 1.15
+				recargo= 1.15
+				pasajes = 10
+				pasajesMax = 40
 			4:costo = 95000
 				costoFinal = 125000 
-			recargo= 1.15
+				recargo= 1.15
+				pasajes = 10
+				pasajesMax = 40
 		FinSegun
 		//si opcion_vuelo = 4 Entonces
-		si contador <= 10 Entonces
+		si contador <= pasajes Entonces
 			arreglo[m,5] = ConvertirATexto(costo)
 			SiNo
-			si contador > 10 y contador <= 40 Entonces
+			si contador > pasajes y contador <= pasajesMax Entonces
 				arreglo[m,5] = ConvertirATexto(costo*recargo)
 			SiNo
 				arreglo[m,5] = ConvertirATexto(costoFinal)
@@ -256,5 +321,40 @@ SubProceso mostrar_datos_pasajeros(arreglo, cantidad_pasajes, contador Por Refer
 		Mostrar "Costo del pasaje: $", arreglo[m,5]
 		Escribir ""
 		
+	FinPara
+FinSubProceso
+
+
+//BUSQUEDA DEL PASAJERO POR EL NUMERO DEL ASIENTO
+
+SubProceso mostrar_pasajero_buscado(arreglo,buscar_asiento, opcion_venta, datos_Cargados)
+	Escribir "Ingrese el numero de asiento que se le otorgo"
+	
+	Segun opcion_venta Hacer
+		1:
+			busqueda_limite = 120
+		2:
+			busqueda_limite = 120
+		3:
+			busqueda_limite = 80
+		4:
+			busqueda_limite = 80
+	Fin Segun
+	
+	
+	Repetir
+		Leer buscar_asiento
+		si buscar_asiento > busqueda_limite Entonces
+			Escribir "Se paso del limite maximo de busqueda"
+		FinSi
+	Hasta Que buscar_asiento <= busqueda_limite
+	Para b = 0 Hasta busqueda_limite-1 Hacer
+		Para a = 0 Hasta 6 Hacer
+			si arreglo[b,6] == ConvertirATexto(buscar_asiento) Entonces
+				
+				Mostrar Concatenar(datos_Cargados[a],arreglo[b,a])
+				
+			FinSi
+		FinPara
 	FinPara
 FinSubProceso
