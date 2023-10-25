@@ -1,7 +1,9 @@
 Proceso sin_titulo
 	Definir datos_Cargados Como Caracter
-	Definir nombre_apellido, equipaje_en_bodega, opcion_ Como Caracter
-	Definir dni, telefono, numero_pasajero, opcion_venta Como Entero
+	Definir nombre_apellido, equipaje_en_bodega, opcion_, opcion_ordenamiento Como Caracter
+	Definir dni, telefono, numero_pasajero, opcion_venta, totalPasajesPrimarios, totalPasajesSecundarios Como Entero
+	totalPasajesPrimarios= 120
+	totalPasajesSecundarios= 80
 	//CANTIDAD DE PASAJES DISPONIBLES
 	Definir  cant_pasajes_disponibles_salta , cant_pasajes_disponibles_brc, cant_pasajes_disponibles_bsas, cant_pasajes_disponibles_mdz  Como Entero
 	//ARRAYS
@@ -24,10 +26,10 @@ Proceso sin_titulo
 	datos_Cargados[5] = "Precio: $"
 	datos_Cargados[6] = "Asiento: "
 	
-	Escribir "Bienvenidos a nuestro Sistema de venta de pasajes aéreos"
+	Escribir "Bienvenidos a nuestro Sistema de venta de pasajes aÃ©reos"
 	Repetir
 		
-		Escribir "Por favor ingrese una opción:"
+		Escribir "Por favor ingrese una opciÃ³n:"
 		Escribir "1. Venta pasaje"
 		Escribir "2. Buscar pasaje vendido"
 		Escribir "3. Buscar pasajero"
@@ -50,198 +52,285 @@ Proceso sin_titulo
 		
 		Segun opcion_ Hacer
 			"1":           //VENTA DE PASAJES
-				Escribir "Seleccione a donde desea viajar:"
-				si contador_bariloche <> 120
-					Escribir "1. Buenos Aires - Bariloche" //120
-				FinSi
-				si contador_salta <> 120 Entonces
-					Escribir "2. Bueno Aires - Salta"      //120
-				FinSi
-				si contador_bsas <> 80 Entonces
-					Escribir "3. Rosario - Buenos Aires"   //80
-				FinSi
-				si contador_mendoza <> 80 Entonces
-					Escribir "4. Mar Del Plata - Mendoza"   //80
-				FinSi
-				
-				Leer opcion_venta
-				
-				Segun opcion_venta Hacer
+				si contador_brc + contador_salta + contador_bsas + contador_mendoza <> 400 Entonces
 					
-					1:      //VUELO A BARILOCHE
+					Escribir "Seleccione a donde desea viajar:"
+					si contador_brc <> 120
+						Escribir "1. Buenos Aires - Bariloche" //120
+					FinSi
+					si contador_salta <> 120 Entonces
+						Escribir "2. Bueno Aires - Salta"      //120
+					FinSi
+					si contador_bsas <> 80 Entonces
+						Escribir "3. Rosario - Buenos Aires"   //80
+					FinSi
+					si contador_mendoza <> 80 Entonces
+						Escribir "4. Mar Del Plata - Mendoza"   //80
+					FinSi
+					Leer opcion_venta
+					Segun opcion_venta Hacer
 						
-						si contador_brc == 120 Entonces
-							Escribir "Opcion invalida, no quedan mas pasajes"
-						SiNo
+						1:      //VUELO A BARILOCHE
 							
-							cant_pasajes_disponibles_brc = 120  - contador_brc
-							Escribir "Su seleccion fue Buenos Aires - Bariloche"
-							
-							Escribir "Ingrese la cantidad de vuelos que va a comprar (Quedan disponibles: ", cant_pasajes_disponibles_brc  ")"
-							
-							Leer cant_pasajes_brc
-							Mientras (cant_pasajes_brc + contador_brc) > 120 o cant_pasajes_brc > 120 Hacer
-								Escribir "Ha superado la cantidad de pasajes disponible"
-								Escribir "Solo quedan: " cant_pasajes_disponibles_brc
-								Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+							si contador_brc == 120 Entonces
+								Escribir "Opcion invalida, no quedan mas pasajes"
+							SiNo
+								
+								cant_pasajes_disponibles_brc = 120  - contador_brc
+								Escribir "Su seleccion fue Buenos Aires - Bariloche"
+								
+								Escribir "Ingrese la cantidad de vuelos que va a comprar (Quedan disponibles: ", cant_pasajes_disponibles_brc  ")"
+								
 								Leer cant_pasajes_brc
-							FinMientras
+								validacion_pasajes(cant_pasajes_brc, contador_brc, cant_pasajes_disponibles_brc, totalPasajesPrimarios ) 
+								
+								
+								solicitar_datos_pasajeros(vuelo_Brc, cant_pasajes_brc, contador_brc,opcion_venta)
+								
+								Mostrar "Ruta: Buenos Aires - Bariloche"
+								mostrar_datos_pasajeros(vuelo_Brc, cant_pasajes_brc, contador_brc)
+								
+							FinSi
 							
 							
-							solicitar_datos_pasajeros(vuelo_Brc, cant_pasajes_brc, contador_brc)
 							
-							Mostrar "Ruta: Buenos Aires - Bariloche"
-							mostrar_datos_pasajeros(vuelo_Brc, cant_pasajes_brc, contador_brc, opcion_venta)
+						2:           //VUELO A SALTA
 							
-						FinSi
-						
-						
-						
-					2:           //VUELO A SALTA
-						
-						si contador_salta == 120 Entonces
-							Escribir "Opcion invalida, no quedan mas pasajes"
-						SiNo
-							
-							cant_pasajes_disponibles_salta = 120 - contador_salta
-							Escribir "Su seleccion fue Bueno Aires - Salta"
-							
-							Escribir "Ingrese la cantidad de vuelos que va a comprar quedan disponibles: (", cant_pasajes_disponibles_salta ")"
-							
-							Leer cant_pasajes_salta
-							
-							Mientras (cant_pasajes_salta + contador_salta) > 120 o cant_pasajes_brc > 120 Hacer
-								Escribir "Ha superado la cantidad de pasajes disponible"
-								Escribir "Solo quedan: " cant_pasajes_disponibles_salta
-								Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+							si contador_salta == 120 Entonces
+								Escribir "Opcion invalida, no quedan mas pasajes"
+							SiNo
+								
+								cant_pasajes_disponibles_salta = 120 - contador_salta
+								Escribir "Su seleccion fue Bueno Aires - Salta"
+								
+								Escribir "Ingrese la cantidad de vuelos que va a comprar quedan disponibles: (", cant_pasajes_disponibles_salta ")"
+								
 								Leer cant_pasajes_salta
-							FinMientras
+								validacion_pasajes(cant_pasajes_salta, contador_salta, cant_pasajes_disponibles_salta, totalPasajesPrimarios  ) 
+								
+								
+								solicitar_datos_pasajeros(vuelo_Salta, cant_pasajes_salta, contador_salta,opcion_venta)
+								Mostrar "Ruta: Buenos Aires - Salta"
+								mostrar_datos_pasajeros(vuelo_Salta, cant_pasajes_salta, contador_salta)
+								
+							FinSi
 							
-							solicitar_datos_pasajeros(vuelo_Salta, cant_pasajes_salta, contador_salta)
-							Mostrar "Ruta: Buenos Aires - Salta"
-							mostrar_datos_pasajeros(vuelo_Salta, cant_pasajes_salta, contador_salta, opcion_venta)
 							
-						FinSi
-						
-						
-					3:       //VUELO A BUENOS AIRES
-						
-						si contador_bsas == 80 Entonces
-							Escribir "Opcion invalida, no quedan mas pasajes"
-						SiNo
+						3:       //VUELO A BUENOS AIRES
 							
-							cant_pasajes_disponibles_bsas = 80 - contador_bsas
-							Escribir "Su seleccion fue Rosario - Buenos Aires"
-							
-							Escribir "Ingrese la cantidad de vuelos que va a comprar quedan disponibles: (", cant_pasajes_disponibles_bsas ")"
-							
-							Leer cant_pasajes_bsas
-							
-							Mientras (cant_pasajes_bsas + contador_bsas) > 80 o cant_pasajes_bsas > 80 Hacer
-								Escribir "Ha superado la cantidad de pasajes disponible"
-								Escribir "Solo quedan: " cant_pasajes_disponibles_bsas
-								Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+							si contador_bsas == 80 Entonces
+								Escribir "Opcion invalida, no quedan mas pasajes"
+							SiNo
+								
+								cant_pasajes_disponibles_bsas = 80 - contador_bsas
+								Escribir "Su seleccion fue Rosario - Buenos Aires"
+								
+								Escribir "Ingrese la cantidad de vuelos que va a comprar quedan disponibles: (", cant_pasajes_disponibles_bsas ")"
+								
 								Leer cant_pasajes_bsas
-							FinMientras
+								
+								validacion_pasajes(cant_pasajes_salta, contador_salta, cant_pasajes_disponibles_salta,totalPasajesSecundarios) 
+								
+								
+								solicitar_datos_pasajeros(vuelo_Bsas, cant_pasajes_bsas, contador_bsas,opcion_venta)
+								Mostrar "Ruta: Rosario - Buenos Aires"
+								mostrar_datos_pasajeros(vuelo_Bsas, cant_pasajes_bsas, contador_bsas)
+								
+							FinSi
 							
+						4:          //VUELO A MENDOZA
 							
-							solicitar_datos_pasajeros(vuelo_Bsas, cant_pasajes_bsas, contador_bsas)
-							Mostrar "Ruta: Rosario - Buenos Aires"
-							mostrar_datos_pasajeros(vuelo_Bsas, cant_pasajes_bsas, contador_bsas, opcion_venta)
-							
-						FinSi
-						
-					4:          //VUELO A MENDOZA
-						
-						si contador_mendoza == 80 Entonces
-							escribir "opcion invalida, no quedan mas pasajes "
-						SiNo
-							cant_pasajes_disponibles_mdz = 80 - contador_mendoza
-							Escribir "Su seleccion fue Mar Del Plata - Mendoza"
-							
-							Escribir "ingrese la cantidad de vuelos que va a comprar. Quedan disponibles: (" cant_pasajes_disponibles_mdz ")"
-							Leer cant_pasajes_mendoza
-							
-							Mientras (cant_pasajes_mendoza + contador_mendoza) > 80 o cant_pasajes_mendoza > 80 Hacer
-								Escribir "Ha superado la cantidad de pasajes disponible"
-								Escribir "Solo quedan: " cant_pasajes_disponibles_mdz
-								Escribir "Vuelva a ingresar la cantidad de pasajes a comprar"
+							si contador_mendoza == 80 Entonces
+								escribir "opcion invalida, no quedan mas pasajes "
+							SiNo
+								cant_pasajes_disponibles_mdz = 80 - contador_mendoza
+								Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+								
+								Escribir "ingrese la cantidad de vuelos que va a comprar. Quedan disponibles: (" cant_pasajes_disponibles_mdz ")"
 								Leer cant_pasajes_mendoza
-							FinMientras
+								
+								validacion_pasajes(cant_pasajes_salta, contador_salta, cant_pasajes_disponibles_salta,totalPasajesSecundarios) 
+								
+								solicitar_datos_pasajeros(vuelo_Mendoza, cant_pasajes_mendoza, contador_mendoza,opcion_venta)
+								
+								mostrar "Ruta: Mar Del Plata - Mendoza"
+								mostrar_datos_pasajeros(vuelo_Mendoza, cant_pasajes_mendoza, contador_mendoza)
+								
+							FinSi
 							
-							solicitar_datos_pasajeros(vuelo_Mendoza, cant_pasajes_mendoza, contador_mendoza)
+						De Otro Modo:
 							
-							mostrar "Ruta: Mar Del Plata - Mendoza"
-							mostrar_datos_pasajeros(vuelo_Mendoza, cant_pasajes_mendoza, contador_mendoza, opcion_venta)
-							
-						FinSi
-						
-					De Otro Modo:
-						
-				Fin Segun
+					Fin Segun
+				SiNo
+					Escribir "No hay mas pasajes"
+				FinSi
+				
+				
+				
 				
 			"2":                //BUSQUEDA DE PASAJERO POR ASIENTO
-				
-				Escribir "Ingrese en que vuelo quiere buscar al pasajero"
-				Escribir "1. Buenos Aires - Bariloche (", contador_brc, ")"    //120
-				Escribir "2. Bueno Aires - Salta (", contador_salta, ")"       //120
-				Escribir "3. Rosario - Buenos Aires (", contador_bsas, ")"     //80
-				Escribir "4. Mar Del Plata - Mendoza (", contador_mendoza, ")" //80
-				Leer opcion_venta
-				
-				Segun opcion_venta Hacer
-					1:
-						Escribir "Su seleccion fue Buenos Aires - Bariloche"
-						mostrar_pasajero_buscado(vuelo_Brc, opcion_venta, datos_Cargados)
-						
-					2:
-						Escribir "Su seleccion fue Bueno Aires - Salta"
-						mostrar_pasajero_buscado(vuelo_Salta, opcion_venta, datos_Cargados)
-					3:
-						Escribir "Su seleccion fue Rosario - Buenos Aires"
-						mostrar_pasajero_buscado(vuelo_Bsas, opcion_venta, datos_Cargados)
-					4:
-						Escribir "Su seleccion fue Mar Del Plata - Mendoza"
-						mostrar_pasajero_buscado(vuelo_Mendoza, opcion_venta, datos_Cargados)
-				Fin Segun
-				
+				Si contador_brc + contador_salta + contador_bsas + contador_mendoza <> 0 Entonces
+					Escribir "Ingrese en que vuelo quiere buscar al pasajero"
+					Si contador_brc <> 0  Entonces
+						Escribir "1. Buenos Aires - Bariloche (", contador_brc, ")"    //120
+					FinSi
+					Si contador_salta <> 0  Entonces
+						Escribir "2. Bueno Aires - Salta (", contador_salta, ")"    //120
+					FinSi
+					Si contador_bsas <> 0  Entonces
+						Escribir "3. Rosario - Buenos Aires (", contador_bsas, ")"     //80   
+					FinSi
+					Si contador_mendoza <> 0  Entonces
+						Escribir "4. Mar Del Plata - Mendoza (", contador_mendoza, ")"    //80
+					FinSi
+					
+					
+					
+					Leer opcion_venta
+					
+					Segun opcion_venta Hacer
+						1:
+							Escribir "Su seleccion fue Buenos Aires - Bariloche"
+							mostrar_pasajero_buscado(vuelo_Brc, opcion_venta, datos_Cargados)
+							
+						2:
+							Escribir "Su seleccion fue Bueno Aires - Salta"
+							mostrar_pasajero_buscado(vuelo_Salta, opcion_venta, datos_Cargados)
+						3:
+							Escribir "Su seleccion fue Rosario - Buenos Aires"
+							mostrar_pasajero_buscado(vuelo_Bsas, opcion_venta, datos_Cargados)
+						4:
+							Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+							mostrar_pasajero_buscado(vuelo_Mendoza, opcion_venta, datos_Cargados)
+					Fin Segun
+				SiNo
+					Escribir "No ningun vuelo vendido"
+				FinSi
 				
 				
 			"3":         //BUSQUEDA DE PASAJERO POR NOMBRE Y APELLIDO
+				Si contador_brc + contador_salta + contador_bsas + contador_mendoza <> 0 Entonces
+					Si contador_brc <> 0  Entonces
+						Escribir "1. Buenos Aires - Bariloche (", contador_brc, ")"    //120
+					FinSi
+					Si contador_salta <> 0  Entonces
+						Escribir "2. Bueno Aires - Salta (", contador_salta, ")"    //120
+					FinSi
+					Si contador_bsas <> 0  Entonces
+						Escribir "3. Rosario - Buenos Aires (", contador_bsas, ")"     //80   
+					FinSi
+					Si contador_mendoza <> 0  Entonces
+						Escribir "4. Mar Del Plata - Mendoza (", contador_mendoza, ")"    //80
+					FinSi
+					Leer opcion_venta
+					Segun opcion_venta Hacer
+						1:
+							Escribir "Su seleccion fue Buenos Aires - Bariloche"
+							ordenamiento_lista_ascendente(vuelo_Brc,contador_brc)
+							
+							mostrar_pasajero_por_nombre(vuelo_Brc, contador_brc, datos_Cargados, opcion_venta)
+						2:
+							Escribir "Su seleccion fue Bueno Aires - Salta"
+							ordenamiento_lista_ascendente(vuelo_Salta,contador_salta)
+							
+							mostrar_pasajero_por_nombre(vuelo_Salta, contador_salta, datos_Cargados, opcion_venta)
+						3:
+							Escribir "Su seleccion fue Rosario - Buenos Aires"
+							ordenamiento_lista_ascendente(vuelo_Bsas,contador_bsas)
+							
+							mostrar_pasajero_por_nombre(vuelo_Bsas, contador_bsas, datos_Cargados, opcion_venta)
+						4:
+							Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+							ordenamiento_lista_ascendente(vuelo_Mendoza,contador_mendoza)
+							
+							mostrar_pasajero_por_nombre(vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_venta)
+					Fin Segun
+				SiNo
+					Escribir "No ningun vuelo vendido"
+				FinSi
 				
-				Escribir "Ingrese en que vuelo quiere buscar al pasajero"
-				Escribir "1. Buenos Aires - Bariloche (", contador_brc, ")"    //120
-				Escribir "2. Bueno Aires - Salta (", contador_salta, ")"       //120
-				Escribir "3. Rosario - Buenos Aires (", contador_bsas, ")"     //80
-				Escribir "4. Mar Del Plata - Mendoza (", contador_mendoza, ")" //80
-				Leer opcion_venta
 				
-				Segun opcion_venta Hacer
-					1:
-						Escribir "Su seleccion fue Buenos Aires - Bariloche"
-						ordenamiento_lista(vuelo_Brc,contador_brc)
-						
-						mostrar_pasajero_por_nombre(vuelo_Brc, contador_brc, datos_Cargados, opcion_venta)
-					2:
-						Escribir "Su seleccion fue Bueno Aires - Salta"
-						ordenamiento_lista(vuelo_Salta,contador_salta)
-						
-						mostrar_pasajero_por_nombre(vuelo_Salta, contador_salta, datos_Cargados, opcion_venta)
-					3:
-						Escribir "Su seleccion fue Rosario - Buenos Aires"
-						ordenamiento_lista(vuelo_Bsas,contador_bsas)
-						
-						mostrar_pasajero_por_nombre(vuelo_Bsas, contador_bsas, datos_Cargados, opcion_venta)
-					4:
-						Escribir "Su seleccion fue Mar Del Plata - Mendoza"
-						ordenamiento_lista(vuelo_Mendoza,contador_mendoza)
-						
-						mostrar_pasajero_por_nombre(vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_venta)
-				Fin Segun
+				
 			"4":
-				
+				Si contador_brc + contador_salta + contador_bsas + contador_mendoza <> 0 Entonces
+					
+					Escribir "Ingrese si quiere ordenar de manera ascendente o descendente"
+					Escribir "ASC. ascendente"
+					Escribir "DSC. descendente"
+					Leer opcion_ordenamiento
+					
+					Escribir "Ingrese cual vuelo quiere mostrar"
+					Si contador_brc <> 0  Entonces
+					Escribir "1. Buenos Aires - Bariloche (", contador_brc, ")"    //120
+					FinSi
+					Si contador_salta <> 0  Entonces
+						Escribir "2. Bueno Aires - Salta (", contador_salta, ")"    //120
+					FinSi
+					Si contador_bsas <> 0  Entonces
+						Escribir "3. Rosario - Buenos Aires (", contador_bsas, ")"     //80   
+					FinSi
+					Si contador_mendoza <> 0  Entonces
+						Escribir "4. Mar Del Plata - Mendoza (", contador_mendoza, ")"    //80
+					FinSi
+					
+					Leer opcion_venta
+					
+					si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
+						Segun opcion_venta Hacer
+							1:
+								Escribir "Su seleccion fue Buenos Aires - Bariloche"
+								ordenamiento_lista_descendente(vuelo_Brc, contador_brc)
+								mostrar_lista_pasajeros(vuelo_Brc, contador_brc, datos_Cargados)
+							2:
+								Escribir "Su seleccion fue Bueno Aires - Salta"
+								ordenamiento_lista_descendente(vuelo_Salta, contador_salta)
+								mostrar_lista_pasajeros(vuelo_Salta, contador_salta, datos_Cargados)
+
+							3:
+								Escribir "Su seleccion fue Rosario - Buenos Aires"
+								ordenamiento_lista_descendente(vuelo_Bsas, contador_bsas)
+								mostrar_lista_pasajeros(vuelo_Bsas, contador_bsas, datos_Cargados)
+
+							4:
+								Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+								ordenamiento_lista_descendente(vuelo_Mendoza, contador_mendoza)
+								mostrar_lista_pasajeros(vuelo_Mendoza, contador_mendoza, datos_Cargados)
+
+						Fin Segun
+						
+					SiNo
+						Segun opcion_venta Hacer
+							1:
+								Escribir "Su seleccion fue Buenos Aires - Bariloche"
+								ordenamiento_lista_ascendente(vuelo_Brc, contador_brc)
+								mostrar_lista_pasajeros(vuelo_Brc, contador_brc, datos_Cargados)
+							2:
+								Escribir "Su seleccion fue Bueno Aires - Salta"
+								ordenamiento_lista_ascendente(vuelo_Salta, contador_salta)
+								mostrar_lista_pasajeros(vuelo_Salta, contador_salta, datos_Cargados)
+							3:
+								Escribir "Su seleccion fue Rosario - Buenos Aires"
+								ordenamiento_lista_ascendente(vuelo_Bsas, contador_bsas)
+								mostrar_lista_pasajeros(vuelo_Bsas, contador_bsas, datos_Cargados)
+								
+							4:
+								Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+								ordenamiento_lista_ascendente(vuelo_Mendoza, contador_mendoza)
+								mostrar_lista_pasajeros(vuelo_Mendoza, contador_mendoza, datos_Cargados)
+						Fin Segun
+					FinSi
+					
+				SiNo
+					Escribir "No ningun vuelo vendido"
+				FinSi
 			"5":
-				
+				Si contador_brc + contador_salta + contador_bsas + contador_mendoza <> 0 Entonces
+					
+					escribir ""
+					
+				SiNo
+					Escribir "No ningun vuelo vendido"
+				FinSi
 			De Otro Modo:
 				
 		Fin Segun
@@ -254,13 +343,21 @@ FinProceso
 
 
 
-
+//VALIDACION PASAJES DISPONIBLES
+SubProceso validacion_pasajes(cant_pasajes, contador, cant_pasajes_disponibles, total_pasajes) 
+	Mientras (cant_pasajes + contador) > total_pasajes o cant_pasajes > 120 Hacer
+		Escribir "Ha superado la cantidad de pasajes disponible"
+		Escribir "Solo quedan: " cant_pasajes_disponibles
+		Escribir "Vuelva a ingresar la cantidad de vuelos a comprar"
+		Leer cant_pasajes
+	FinMientras
+FinSubProceso
 
 
 
 //INGRESA LOS DATOS DEL PASAJERO
 
-SubProceso solicitar_datos_pasajeros(arreglo Por Referencia, cantidad_pasajes Por Referencia, contador Por Referencia)
+SubProceso solicitar_datos_pasajeros(arreglo Por Referencia, cantidad_pasajes Por Referencia, contador Por Referencia, opcion_venta)
 	
 	Para m = contador Hasta (contador + cantidad_pasajes)-1 Hacer
 		
@@ -268,7 +365,7 @@ SubProceso solicitar_datos_pasajeros(arreglo Por Referencia, cantidad_pasajes Po
 		leer arreglo[m,0]
 		escribir "ingrese su dni"
 		leer arreglo[m,1]
-		escribir "ingrese su número de teléfono"
+		escribir "ingrese su nÃºmero de telÃ©fono"
 		leer arreglo[m,2]
 		Escribir "Desea que su equipaje sea llevado en la bodega? Si || si || No || no"
 		Leer arreglo[m,3]
@@ -277,30 +374,10 @@ SubProceso solicitar_datos_pasajeros(arreglo Por Referencia, cantidad_pasajes Po
 		SiNo
 			arreglo[m,3] ="Falso"
 		FinSi
-		Escribir "ingrese su número de pasajero"
+		Escribir "ingrese su nÃºmero de pasajero"
 		leer arreglo[m,4]
-	FinPara
-	
-FinSubProceso
-
-
-//MUESTRA LOS DATOS DEL PASAJERO INGRESADO
-
-SubProceso mostrar_datos_pasajeros(arreglo, cantidad_pasajes, contador Por Referencia, opcion_vuelo)
-	Definir costo, costoFinal, recargo Como Real
-	
-	Para m = contador Hasta (contador + cantidad_pasajes)-1 Hacer
-		contador = contador+1
-		Mostrar "Nombre y apellido: ", arreglo[m,0]
-		mostrar "DNI: ", arreglo[m,1]
-		Mostrar "número de teléfono: ", arreglo[m,2]
-		Mostrar "equipaje en bodega: ", arreglo[m,3]
-		Mostrar "número de pasajero: ", arreglo[m,4]
 		
-		arreglo[m,6] = ConvertirATexto(contador)
-		Mostrar "asiento: ", arreglo[m,6]
-		
-		Segun opcion_vuelo Hacer
+		Segun opcion_venta Hacer
 			1: costo = 150000
 				costoFinal = 180000
 				recargo = 1.1
@@ -335,6 +412,28 @@ SubProceso mostrar_datos_pasajeros(arreglo, cantidad_pasajes, contador Por Refer
 		si arreglo[m,3] = "Verdadero" Entonces
 			arreglo[m,5] =ConvertirATexto(ConvertirANumero(arreglo[m,5])*1.05)
 		FinSi
+	FinPara
+	
+FinSubProceso
+
+
+//MUESTRA LOS DATOS DEL PASAJERO INGRESADO
+
+SubProceso mostrar_datos_pasajeros(arreglo, cantidad_pasajes, contador Por Referencia)
+	Definir costo, costoFinal, recargo Como Real
+	
+	Para m = contador Hasta (contador + cantidad_pasajes)-1 Hacer
+		contador = contador+1
+		Mostrar "Nombre y apellido: ", arreglo[m,0]
+		mostrar "DNI: ", arreglo[m,1]
+		Mostrar "nÃºmero de telÃ©fono: ", arreglo[m,2]
+		Mostrar "equipaje en bodega: ", arreglo[m,3]
+		Mostrar "nÃºmero de pasajero: ", arreglo[m,4]
+		
+		arreglo[m,6] = ConvertirATexto(contador)
+		Mostrar "asiento: ", arreglo[m,6]
+		
+
 		Mostrar "Costo del pasaje: $", arreglo[m,5]
 		Escribir ""
 		
@@ -397,7 +496,7 @@ FinSubProceso
 
 //ORDENA LA LISTA PARA HACER LA BUSQUEDA BINARIA
 
-SubProceso ordenamiento_lista(arreglo Por Referencia, contador)
+SubProceso ordenamiento_lista_ascendente(arreglo Por Referencia, contador)
 	Definir aux Como Caracter
 	
 	Para i = 0 Hasta contador-2 Hacer
@@ -470,6 +569,52 @@ SubProceso mostrar_pasajero_por_nombre(arreglo, contador, datos_Cargados, opcion
 		
 		si inferior > superior Entonces
 			Escribir "El pasajero no existe"
+		FinSi
+		
+	Hasta Que es_encontrado == "Verdadero" o inferior > superior
+	
+	
+FinSubProceso
+
+
+//ORDENA LA LISTA DE FORMA DESCENDENTE
+
+SubProceso ordenamiento_lista_descendente(arreglo, contador)
+	Definir aux Como Caracter
+	
+	Para i = 0 Hasta contador-2 Hacer
+		
+		Para j = i+1 Hasta contador-1 Hacer
+			
+			si Mayusculas(arreglo[i,0]) < Mayusculas(arreglo[j,0]) Entonces
+				Para k = 0 Hasta 6 Hacer
+					
+					aux = arreglo[i,k]
+					arreglo[i,k] = arreglo[j,k]
+					arreglo[j,k] = aux
+				FinPara
+				
+			FinSi
+			
+		FinPara
+		
+	FinPara
+	
+FinSubProceso
+
+SubProceso mostrar_lista_pasajeros(arreglo, contador, datos_Cargados)
+
+	Para i = 0 Hasta contador -1 Hacer
+		
+		Para j = 0 Hasta  6 Hacer
+			
+			Mostrar Concatenar(datos_Cargados[j],arreglo[i,j])
+			
+		FinPara
+		
+	FinPara
+FinSubProceso
+
 		FinSi
 		
 	Hasta Que es_encontrado == "Verdadero" o inferior > superior
