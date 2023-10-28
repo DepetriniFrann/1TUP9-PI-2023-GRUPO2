@@ -54,7 +54,19 @@ Proceso sin_titulo
 			"1":           //VENTA DE PASAJES
 				si contador_brc + contador_salta + contador_bsas + contador_mendoza <> 400 Entonces
 					
-					validacion_vuelo(contador_brc, contador_salta, contador_bsas, contador_mendoza)
+					Escribir "Seleccione a donde desea viajar:"
+					si contador_bariloche <> 120
+						Escribir "1. Buenos Aires - Bariloche" //120
+					FinSi
+					si contador_salta <> 120 Entonces
+						Escribir "2. Bueno Aires - Salta"      //120
+					FinSi
+					si contador_bsas <> 80 Entonces
+						Escribir "3. Rosario - Buenos Aires"   //80
+					FinSi
+					si contador_mendoza <> 80 Entonces
+						Escribir "4. Mar Del Plata - Mendoza"   //80
+					FinSi
 					Leer opcion_venta
 					Segun opcion_venta Hacer
 						
@@ -188,28 +200,29 @@ Proceso sin_titulo
 				Si contador_brc + contador_salta + contador_bsas + contador_mendoza <> 0 Entonces
 					validacion_vuelo(contador_brc, contador_salta, contador_bsas, contador_mendoza)
 					Leer opcion_venta
-					Segun opcion_venta Hacer
-						1:
-							Escribir "Su seleccion fue Buenos Aires - Bariloche"
-							ordenamiento_lista_ascendente(vuelo_Brc,contador_brc)
+					sub_segun(opcion_venta, opcion_,  vuelo_Brc, contador_brc, vuelo_Salta , contador_salta, vuelo_Bsas, contador_bsas,vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_ordenamiento)
+					//Segun opcion_venta Hacer
+						//1:
+							//Escribir "Su seleccion fue Buenos Aires - Bariloche"
+							//ordenamiento_lista_ascendente(vuelo_Brc,contador_brc)
 							
-							mostrar_pasajero_por_nombre(vuelo_Brc, contador_brc, datos_Cargados, opcion_venta)
-						2:
-							Escribir "Su seleccion fue Bueno Aires - Salta"
-							ordenamiento_lista_ascendente(vuelo_Salta,contador_salta)
+							//mostrar_pasajero_por_nombre(vuelo_Brc, contador_brc, datos_Cargados, opcion_venta)
+						//2:
+							//Escribir "Su seleccion fue Bueno Aires - Salta"
+							//ordenamiento_lista_ascendente(vuelo_Salta,contador_salta)
 							
-							mostrar_pasajero_por_nombre(vuelo_Salta, contador_salta, datos_Cargados, opcion_venta)
-						3:
-							Escribir "Su seleccion fue Rosario - Buenos Aires"
-							ordenamiento_lista_ascendente(vuelo_Bsas,contador_bsas)
+							//mostrar_pasajero_por_nombre(vuelo_Salta, contador_salta, datos_Cargados, opcion_venta)
+						//3:
+							//Escribir "Su seleccion fue Rosario - Buenos Aires"
+							//ordenamiento_lista_ascendente(vuelo_Bsas,contador_bsas)
 							
-							mostrar_pasajero_por_nombre(vuelo_Bsas, contador_bsas, datos_Cargados, opcion_venta)
-						4:
-							Escribir "Su seleccion fue Mar Del Plata - Mendoza"
-							ordenamiento_lista_ascendente(vuelo_Mendoza,contador_mendoza)
+							//mostrar_pasajero_por_nombre(vuelo_Bsas, contador_bsas, datos_Cargados, opcion_venta)
+						//4:
+						//	Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+						//	ordenamiento_lista_ascendente(vuelo_Mendoza,contador_mendoza)
 							
-							mostrar_pasajero_por_nombre(vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_venta)
-					Fin Segun
+						//	mostrar_pasajero_por_nombre(vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_venta)
+					//Fin Segun
 				SiNo
 					Escribir "No ningun vuelo vendido"
 				FinSi
@@ -224,54 +237,13 @@ Proceso sin_titulo
 					Escribir "DSC. descendente"
 					Leer opcion_ordenamiento
 					
+					
+					
 					validacion_vuelo(contador_brc, contador_salta, contador_bsas, contador_mendoza)
 					
 					Leer opcion_venta
 					
-					si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
-						Segun opcion_venta Hacer
-							1:
-								Escribir "Su seleccion fue Buenos Aires - Bariloche"
-								ordenamiento_lista_descendente(vuelo_Brc, contador_brc)
-								mostrar_lista_pasajeros(vuelo_Brc, contador_brc, datos_Cargados)
-							2:
-								Escribir "Su seleccion fue Bueno Aires - Salta"
-								ordenamiento_lista_descendente(vuelo_Salta, contador_salta)
-								mostrar_lista_pasajeros(vuelo_Salta, contador_salta, datos_Cargados)
-
-							3:
-								Escribir "Su seleccion fue Rosario - Buenos Aires"
-								ordenamiento_lista_descendente(vuelo_Bsas, contador_bsas)
-								mostrar_lista_pasajeros(vuelo_Bsas, contador_bsas, datos_Cargados)
-
-							4:
-								Escribir "Su seleccion fue Mar Del Plata - Mendoza"
-								ordenamiento_lista_descendente(vuelo_Mendoza, contador_mendoza)
-								mostrar_lista_pasajeros(vuelo_Mendoza, contador_mendoza, datos_Cargados)
-
-						Fin Segun
-						
-					SiNo
-						Segun opcion_venta Hacer
-							1:
-								Escribir "Su seleccion fue Buenos Aires - Bariloche"
-								ordenamiento_lista_ascendente(vuelo_Brc, contador_brc)
-								mostrar_lista_pasajeros(vuelo_Brc, contador_brc, datos_Cargados)
-							2:
-								Escribir "Su seleccion fue Bueno Aires - Salta"
-								ordenamiento_lista_ascendente(vuelo_Salta, contador_salta)
-								mostrar_lista_pasajeros(vuelo_Salta, contador_salta, datos_Cargados)
-							3:
-								Escribir "Su seleccion fue Rosario - Buenos Aires"
-								ordenamiento_lista_ascendente(vuelo_Bsas, contador_bsas)
-								mostrar_lista_pasajeros(vuelo_Bsas, contador_bsas, datos_Cargados)
-								
-							4:
-								Escribir "Su seleccion fue Mar Del Plata - Mendoza"
-								ordenamiento_lista_ascendente(vuelo_Mendoza, contador_mendoza)
-								mostrar_lista_pasajeros(vuelo_Mendoza, contador_mendoza, datos_Cargados)
-						Fin Segun
-					FinSi
+					sub_segun(opcion_venta, opcion_,  vuelo_Brc, contador_brc, vuelo_Salta , contador_salta, vuelo_Bsas, contador_bsas,vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_ordenamiento)
 					
 				SiNo
 					Escribir "No ningun vuelo vendido"
@@ -535,19 +507,92 @@ FinSubProceso
 
 //SUBPROCESO SEGUN
 
-SubProceso sub_segun(opcion_venta, opcion_)
+SubProceso sub_segun(opcion_venta, opcion_,  vuelo_Brc, contador_brc, vuelo_Salta , contador_salta, vuelo_Bsas, contador_bsas,vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_ordenamiento)
 	Segun opcion_venta Hacer
 		1:
 			Escribir "Su seleccion fue Buenos Aires - Bariloche"
+			Si opcion_ == "2" Entonces
+				Escribir ""
+				Sino 
+					Si opcion_ == "3" Entonces
+						ordenamiento_lista_ascendente(vuelo_Brc,contador_brc)
+						mostrar_pasajero_por_nombre(vuelo_Brc, contador_brc, datos_Cargados, opcion_venta)
+					SiNo
+						si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
+							ordenamiento_lista_descendente(vuelo_Brc, contador_brc)
+							mostrar_lista_pasajeros(vuelo_Brc, contador_brc, datos_Cargados)
+						SiNo
+							ordenamiento_lista_ascendente(vuelo_Brc, contador_brc)
+							mostrar_lista_pasajeros(vuelo_Brc, contador_brc, datos_Cargados)
+						FinSi
+					FinSi
+				FinSi
 			
-			FinSi
 		2:
 			Escribir "Su seleccion fue Bueno Aires - Salta"
+			
+			Si opcion_ == "2" Entonces
+				Escribir ""
+				Sino 
+					Si opcion_ == "3" Entonces
+						ordenamiento_lista_ascendente(vuelo_Salta,contador_salta)
+						mostrar_pasajero_por_nombre(vuelo_Salta, contador_salta, datos_Cargados, opcion_venta)
+					SiNo
+						si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
+							ordenamiento_lista_descendente(vuelo_Salta, contador_salta)
+							mostrar_lista_pasajeros(vuelo_Salta, contador_salta, datos_Cargados)
+						SiNo
+							ordenamiento_lista_ascendente(vuelo_Salta, contador_salta)
+							mostrar_lista_pasajeros(vuelo_Salta, contador_salta, datos_Cargados)
+						FinSi
+						
+					FinSi
+				FinSi
+				
 		3:
 			Escribir "Su seleccion fue Rosario - Buenos Aires"
+			
+				Si opcion_ == "2" Entonces //Opcion_ 2
+					mostrar_pasajero_buscado(vuelo_Bsas, opcion_venta, datos_Cargados)
+				Sino 
+					Si opcion_ == "3" Entonces //Opcion_ 3
+						ordenamiento_lista_ascendente(vuelo_Bsas,contador_bsas)
+						mostrar_pasajero_por_nombre(vuelo_Bsas, contador_bsas, datos_Cargados, opcion_venta)
+					SiNo //Opcion_ 4
+						si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
+							ordenamiento_lista_descendente(vuelo_Bsas, contador_bsas)
+							mostrar_lista_pasajeros(vuelo_Bsas, contador_bsas, datos_Cargados)
+
+						SiNo
+							ordenamiento_lista_ascendente(vuelo_Bsas, contador_bsas)
+							mostrar_lista_pasajeros(vuelo_Bsas, contador_bsas, datos_Cargados)
+
+						FinSi
+					FinSi
+				FinSi
+				
 		4:
 			Escribir "Su seleccion fue Mar Del Plata - Mendoza"
-	Fin Segun
+			
+				
+			
+				Si opcion_ == "2" Entonces
+					mostrar_pasajero_buscado(vuelo_Mendoza, opcion_venta, datos_Cargados)
+				Sino 
+					Si opcion_ == "3" Entonces
+						ordenamiento_lista_ascendente(vuelo_Mendoza,contador_mendoza)
+						mostrar_pasajero_por_nombre(vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_venta)
+					SiNo
+						si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
+							ordenamiento_lista_descendente(vuelo_Mendoza, contador_mendoza)
+							mostrar_lista_pasajeros(vuelo_Mendoza, contador_mendoza, datos_Cargados)
+						SiNo
+							ordenamiento_lista_ascendente(vuelo_Mendoza, contador_mendoza)
+							mostrar_lista_pasajeros(vuelo_Mendoza, contador_mendoza, datos_Cargados)
+						FinSi
+					FinSi
+				FinSi
+	FinSegun
 FinSubProceso
 
 
