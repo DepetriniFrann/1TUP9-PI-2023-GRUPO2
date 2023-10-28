@@ -38,8 +38,8 @@ Proceso sin_titulo
 			Leer opcion_
 			mayus = Mayusculas(opcion_)
 			si opcion_ <> "1" y opcion_ <> "2" y opcion_ <> "3" y opcion_ <> "4" y opcion_ <> "5" y mayus <> "SALIR" Entonces
-				Escribir "Opcion Invalida"
-				Escribir "Ingrese un numero del 1 al 5 o salir"
+				Escribir "Opción inválida"
+				Escribir "Ingrese un número del 1 al 5 o salir"
 			FinSi
 		Hasta Que opcion_ = "1" o opcion_ = "2" o opcion_ = "3" o opcion_ = "4" o opcion_ = "5" o mayus = "SALIR"
 		Segun opcion_ Hacer
@@ -63,7 +63,7 @@ Proceso sin_titulo
 					Segun opcion_venta Hacer
 						1:      //VUELO A BARILOCHE
 							si contador_brc == 120 Entonces
-								Escribir "Opcion invalida, no quedan mas pasajes"
+								Escribir "Opción inválida, no quedan mas pasajes"
 							SiNo
 								cant_pasajes_disponibles_brc = 120  - contador_brc
 								Escribir "Su seleccion fue Buenos Aires - Bariloche"
@@ -76,7 +76,7 @@ Proceso sin_titulo
 							FinSi
 						2:           //VUELO A SALTA
 							si contador_salta == 120 Entonces
-								Escribir "Opcion invalida, no quedan mas pasajes"
+								Escribir "Opción inválida, no quedan mas pasajes"
 							SiNo
 								cant_pasajes_disponibles_salta = 120 - contador_salta
 								Escribir "Su seleccion fue Bueno Aires - Salta"
@@ -89,7 +89,7 @@ Proceso sin_titulo
 							FinSi
 						3:       //VUELO A BUENOS AIRES
 							si contador_bsas == 80 Entonces
-								Escribir "Opcion invalida, no quedan mas pasajes"
+								Escribir "Opción inválida, no quedan mas pasajes"
 							SiNo
 								cant_pasajes_disponibles_bsas = 80 - contador_bsas
 								Escribir "Su seleccion fue Rosario - Buenos Aires"
@@ -102,7 +102,7 @@ Proceso sin_titulo
 							FinSi
 						4:          //VUELO A MENDOZA
 							si contador_mendoza == 80 Entonces
-								escribir "opcion invalida, no quedan mas pasajes "
+								escribir "opción inválida, no quedan mas pasajes "
 							SiNo
 								cant_pasajes_disponibles_mdz = 80 - contador_mendoza
 								Escribir "Su seleccion fue Mar Del Plata - Mendoza"
@@ -124,7 +124,7 @@ Proceso sin_titulo
 					validar_menu(opcion_venta)
 					sub_segun(opcion_venta, opcion_,  vuelo_Brc, contador_brc, vuelo_Salta , contador_salta, vuelo_Bsas, contador_bsas,vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_ordenamiento)
 				SiNo
-					Escribir "No ningun vuelo vendido"
+					Escribir "No hay ningún vuelo vendido"
 				FinSi
 			"3":         //BUSQUEDA DE PASAJERO POR NOMBRE Y APELLIDO
 				Si contador_brc + contador_salta + contador_bsas + contador_mendoza <> 0 Entonces
@@ -132,17 +132,17 @@ Proceso sin_titulo
 					validar_menu(opcion_venta)
 					sub_segun(opcion_venta, opcion_,  vuelo_Brc, contador_brc, vuelo_Salta , contador_salta, vuelo_Bsas, contador_bsas,vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_ordenamiento)
 				SiNo
-					Escribir "No ningun vuelo vendido"
+					Escribir "No hay ningún vuelo vendido"
 				FinSi
 			"4":
 				Si contador_brc + contador_salta + contador_bsas + contador_mendoza <> 0 Entonces
-					Escribir "Ingrese si quiere ordenar de manera ascendente o descendente"
-					Escribir "ASC. ascendente"
-					Escribir "DSC. descendente"
+					Escribir "Ingrese si quiere ordenar de manera Ascendente o Descendente"
+					Escribir "ASC || Ascendente"
+					Escribir "DSC || Descendente"
 					Repetir
 						Leer opcion_ordenamiento
 						Si Mayusculas(opcion_ordenamiento) <> "ASC" y Mayusculas(opcion_ordenamiento) <> "DSC" Entonces
-							Escribir "Opcion Invalida"
+							Escribir "Opción Inválida"
 							Escribir "Las opciones son: ASC || DSC"
 						FinSi
 					Hasta Que Mayusculas(opcion_ordenamiento) == "ASC" o Mayusculas(opcion_ordenamiento) == "DSC"
@@ -152,7 +152,7 @@ Proceso sin_titulo
 					validar_menu(opcion_venta)
 					sub_segun(opcion_venta, opcion_,  vuelo_Brc, contador_brc, vuelo_Salta , contador_salta, vuelo_Bsas, contador_bsas,vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_ordenamiento)
 				SiNo
-					Escribir "No ningun vuelo vendido"
+					Escribir "No hay ningún vuelo vendido"
 				FinSi
 			"5":
 				Si contador_brc + contador_salta + contador_bsas + contador_mendoza <> 0 Entonces
@@ -161,8 +161,8 @@ Proceso sin_titulo
 					Escribir "B | Porcentaje por ruta aérea "
 					Repetir
 						Leer opcion_listado
-						Si Mayusculas(opcion_listado) <> "A" o  Mayusculas(opcion_listado) <> "B" Entonces
-							Escribir "Opcion invalida"
+						Si Mayusculas(opcion_listado) <> "A" y  Mayusculas(opcion_listado) <> "B" Entonces
+							Escribir "Opción inválida"
 							Escribir "Las opciones son: A || B"
 						FinSi
 					Hasta Que Mayusculas(opcion_listado) == "A" o  Mayusculas(opcion_listado) == "B"
@@ -196,7 +196,7 @@ Proceso sin_titulo
 						Fin Segun
 					FinSi
 				SiNo
-					Escribir "No ningun vuelo vendido"
+					Escribir "No hay ningún vuelo vendido"
 				FinSi
 			De Otro Modo:
 		Fin Segun
@@ -233,11 +233,11 @@ SubProceso solicitar_datos_pasajeros(arreglo Por Referencia, cantidad_pasajes Po
 		escribir "Ingrese su nombre y apellido"
 		nombre_valido <- validar_nombre(arreglo[m,0])
 		arreglo[m,0] = nombre_valido
-		escribir "ingrese su dni"
+		escribir "ingrese su DNI"
 		leer arreglo[m,1]
 		Mientras ConvertirANumero(arreglo[m,1]) < 1000000 o ConvertirANumero(arreglo[m,1]) > 99999999 Hacer
 			Escribir "El dni debe de ser entre 1000000 y 99999999"
-			Escribir "Ingrese el dni devuelta"
+			Escribir "Ingrese el dni nuevamente"
 			leer arreglo[m,1]
 		FinMientras
 		escribir "ingrese su número de teléfono"
@@ -245,9 +245,9 @@ SubProceso solicitar_datos_pasajeros(arreglo Por Referencia, cantidad_pasajes Po
 		Escribir "Desea que su equipaje sea llevado en la bodega? Si || No"
 		Leer arreglo[m,3]
 		Mientras Mayusculas(arreglo[m,3]) <> "SI" y Mayusculas(arreglo[m,3]) <> "NO" Hacer
-			Escribir "Opcion Invalida"
+			Escribir "Opcion Inválida"
 			Escribir "Las opciones son: Si || No"
-			Escribir "Ingrese la opcion devuelta"
+			Escribir "Ingrese la opción nuevamente"
 			Leer arreglo[m,3]
 		FinMientras
 		si Mayusculas(arreglo[m,3]) == "SI" Entonces
@@ -255,12 +255,12 @@ SubProceso solicitar_datos_pasajeros(arreglo Por Referencia, cantidad_pasajes Po
 		SiNo
 			arreglo[m,3] ="Falso"
 		FinSi
-		Escribir "ingrese su número de pasajero (Debe ser entre 3 y 4)"
+		Escribir "ingrese su número de pasajero (Debe ser entre 3 y 4 cifras)"
 		Repetir
 			leer arreglo[m,4]
 			Si Longitud(arreglo[m,4]) <= 2 o Longitud(arreglo[m,4]) > 4 o ConvertirANumero(arreglo[m,4]) < 0 Entonces
-				Escribir "Opcion Invalida"
-				Escribir "Recuerda que el numero de pasajero debe ser positivo y tener entre 3 y 4 digitos"
+				Escribir "Opción Inválida"
+				Escribir "Recuerda que el número de pasajero debe ser positivo y tener entre 3 y 4 dígitos"
 			FinSi
 		Hasta Que  Longitud(arreglo[m,4]) > 2 y  Longitud(arreglo[m,4]) <= 4 y ConvertirANumero(arreglo[m,4]) > 0
 		Segun opcion_venta Hacer
@@ -307,18 +307,18 @@ SubProceso mostrar_datos_pasajeros(arreglo, cantidad_pasajes, contador Por Refer
 		contador = contador+1
 		Mostrar "Nombre y apellido: ", arreglo[m,0]
 		mostrar "DNI: ", arreglo[m,1]
-		Mostrar "número de teléfono: ", arreglo[m,2]
-		Mostrar "equipaje en bodega: ", arreglo[m,3]
-		Mostrar "número de pasajero: ", arreglo[m,4]
+		Mostrar "Número de teléfono: ", arreglo[m,2]
+		Mostrar "Equipaje en bodega: ", arreglo[m,3]
+		Mostrar "Número de pasajero: ", arreglo[m,4]
 		arreglo[m,6] = ConvertirATexto(contador)
-		Mostrar "asiento: ", arreglo[m,6]
+		Mostrar "Asiento: ", arreglo[m,6]
 		Mostrar "Costo del pasaje: $", arreglo[m,5]
 		Escribir ""
 	FinPara
 FinSubProceso
 //BUSQUEDA DEL PASAJERO POR EL NUMERO DEL ASIENTO
 SubProceso mostrar_pasajero_buscado(arreglo, opcion_venta, datos_Cargados)
-	Escribir "Ingrese el numero de asiento que se le otorgo"
+	Escribir "Ingrese el número de asiento que se le otorgó"
 	Segun opcion_venta Hacer
 		1:
 			busqueda_limite = 120
@@ -335,8 +335,8 @@ SubProceso mostrar_pasajero_buscado(arreglo, opcion_venta, datos_Cargados)
 	Fin Segun
 	Repetir
 		Leer buscar_asiento
-		si buscar_asiento > busqueda_limite o buscar_asiento < 0 Entonces
-			Escribir "Se paso del limite maximo de busqueda"
+		si buscar_asiento > busqueda_limite o buscar_asiento <= 0 Entonces
+			Escribir "Se paso del límite máximo de busqueda"
 		FinSi
 	Hasta Que buscar_asiento <= busqueda_limite y buscar_asiento > 0
 	elementoEncontrado = Falso;
@@ -351,7 +351,7 @@ SubProceso mostrar_pasajero_buscado(arreglo, opcion_venta, datos_Cargados)
 		b = b + 1
 	FinMientras
 	Si no elementoEncontrado Entonces
-		Escribir "No se encontro el pasajero";
+		Escribir "No se encontró el pasajero";
 	FinSi
 FinSubProceso
 //ORDENA LA LISTA PARA HACER LA BUSQUEDA BINARIA
@@ -375,75 +375,125 @@ FinSubProceso
 SubProceso sub_segun(opcion_venta, opcion_,  vuelo_Brc, contador_brc, vuelo_Salta , contador_salta, vuelo_Bsas, contador_bsas,vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_ordenamiento)
 	Segun opcion_venta Hacer
 		1:
-			Escribir "Su seleccion fue Buenos Aires - Bariloche"
+			Escribir "Su selección fue Buenos Aires - Bariloche"
 			Si opcion_ == "2" Entonces
-				mostrar_pasajero_buscado(vuelo_Brc, opcion_venta, datos_Cargados)
+				si contador_brc == 0 Entonces
+					Escribir "No hay pasajes vendidos"
+				SiNo
+					mostrar_pasajero_buscado(vuelo_Brc, opcion_venta, datos_Cargados)
+				FinSi
 			Sino 
 				Si opcion_ == "3" Entonces
-					ordenamiento_lista_ascendente(vuelo_Brc,contador_brc)
-					mostrar_pasajero_por_nombre(vuelo_Brc, contador_brc, datos_Cargados, opcion_venta)
-				SiNo
-					si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
-						ordenamiento_lista_descendente(vuelo_Brc, contador_brc)
-						mostrar_lista_pasajeros(vuelo_Brc, contador_brc, datos_Cargados)
+					si contador_brc == 0 Entonces
+						Escribir "No hay pasajes vendidos"
 					SiNo
-						ordenamiento_lista_ascendente(vuelo_Brc, contador_brc)
-						mostrar_lista_pasajeros(vuelo_Brc, contador_brc, datos_Cargados)
+						ordenamiento_lista_ascendente(vuelo_Brc,contador_brc)
+						mostrar_pasajero_por_nombre(vuelo_Brc, contador_brc, datos_Cargados, opcion_venta)
+					FinSi
+				SiNo
+					si contador_brc == 0 Entonces
+						Escribir "No hay pasajes vendidos"
+					SiNo // OPCION 4
+						si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
+							ordenamiento_lista_descendente(vuelo_Brc, contador_brc)
+							mostrar_lista_pasajeros(vuelo_Brc, contador_brc, datos_Cargados)
+						SiNo
+							ordenamiento_lista_ascendente(vuelo_Brc, contador_brc)
+							mostrar_lista_pasajeros(vuelo_Brc, contador_brc, datos_Cargados)
+						FinSi
 					FinSi
 				FinSi
 			FinSi
 		2:
-			Escribir "Su seleccion fue Bueno Aires - Salta"
+			Escribir "Su selección fue Bueno Aires - Salta"
 			Si opcion_ == "2" Entonces
-				mostrar_pasajero_buscado(vuelo_Salta, opcion_venta, datos_Cargados)
+				si contador_salta == 0 Entonces
+					Escribir "No hay pasajes vendidos"
+				SiNo
+					mostrar_pasajero_buscado(vuelo_Salta, opcion_venta, datos_Cargados)
+				FinSi
 			Sino 
 				Si opcion_ == "3" Entonces
-					ordenamiento_lista_ascendente(vuelo_Salta,contador_salta)
-					mostrar_pasajero_por_nombre(vuelo_Salta, contador_salta, datos_Cargados, opcion_venta)
-				SiNo
-					si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
-						ordenamiento_lista_descendente(vuelo_Salta, contador_salta)
-						mostrar_lista_pasajeros(vuelo_Salta, contador_salta, datos_Cargados)
+					si contador_salta == 0 Entonces
+						Escribir "No hay pasajes vendidos"
 					SiNo
-						ordenamiento_lista_ascendente(vuelo_Salta, contador_salta)
-						mostrar_lista_pasajeros(vuelo_Salta, contador_salta, datos_Cargados)
+						ordenamiento_lista_ascendente(vuelo_Salta,contador_salta)
+						mostrar_pasajero_por_nombre(vuelo_Salta, contador_salta, datos_Cargados, opcion_venta)
+					FinSi
+				SiNo // OPCION 4
+					si contador_salta == 0 Entonces
+						Escribir "No hay pasajes vendidos"
+					SiNo
+						si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
+							ordenamiento_lista_descendente(vuelo_Salta, contador_salta)
+							mostrar_lista_pasajeros(vuelo_Salta, contador_salta, datos_Cargados)
+						SiNo
+							ordenamiento_lista_ascendente(vuelo_Salta, contador_salta)
+							mostrar_lista_pasajeros(vuelo_Salta, contador_salta, datos_Cargados)
+						FinSi
 					FinSi
 					
 				FinSi
 			FinSi
 		3:
-			Escribir "Su seleccion fue Rosario - Buenos Aires"
-			Si opcion_ == "2" Entonces //Opcion_ 2
-				mostrar_pasajero_buscado(vuelo_Bsas, opcion_venta, datos_Cargados)
+			Escribir "Su selección fue Rosario - Buenos Aires"
+			Si opcion_ == "2" Entonces //OPCION 2
+				si contador_bsas == 0 Entonces
+					Escribir "No hay pasajes vendidos"
+				SiNo
+					mostrar_pasajero_buscado(vuelo_Bsas, opcion_venta, datos_Cargados)
+				FinSi
+				
 			Sino 
-				Si opcion_ == "3" Entonces //Opcion_ 3
-					ordenamiento_lista_ascendente(vuelo_Bsas,contador_bsas)
-					mostrar_pasajero_por_nombre(vuelo_Bsas, contador_bsas, datos_Cargados, opcion_venta)
-				SiNo //Opcion_ 4
-					si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
-						ordenamiento_lista_descendente(vuelo_Bsas, contador_bsas)
-						mostrar_lista_pasajeros(vuelo_Bsas, contador_bsas, datos_Cargados)
+				Si opcion_ == "3" Entonces // OPCION 3
+					si contador_bsas == 0 Entonces
+						Escribir "No hay pasajes vendidos"
 					SiNo
-						ordenamiento_lista_ascendente(vuelo_Bsas, contador_bsas)
-						mostrar_lista_pasajeros(vuelo_Bsas, contador_bsas, datos_Cargados)
+						ordenamiento_lista_ascendente(vuelo_Bsas,contador_bsas)
+						mostrar_pasajero_por_nombre(vuelo_Bsas, contador_bsas, datos_Cargados, opcion_venta)
+					FinSi
+				SiNo // OPCION 4
+					si contador_bsas == 0 Entonces
+						Escribir "No hay pasajes vendidos"
+					SiNo
+						si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
+							ordenamiento_lista_descendente(vuelo_Bsas, contador_bsas)
+							mostrar_lista_pasajeros(vuelo_Bsas, contador_bsas, datos_Cargados)
+						SiNo
+							ordenamiento_lista_ascendente(vuelo_Bsas, contador_bsas)
+							mostrar_lista_pasajeros(vuelo_Bsas, contador_bsas, datos_Cargados)
+						FinSi
 					FinSi
 				FinSi
 			FinSi
 		4:
-			Escribir "Su seleccion fue Mar Del Plata - Mendoza"
+			Escribir "Su selección fue Mar Del Plata - Mendoza"
 			Si opcion_ == "2" Entonces
-				mostrar_pasajero_buscado(vuelo_Mendoza, opcion_venta, datos_Cargados)
+				si contador_mendoza == 0 Entonces
+					Escribir "No hay pasajes vendidos"
+				SiNo
+					mostrar_pasajero_buscado(vuelo_Mendoza, opcion_venta, datos_Cargados)
+				FinSi
+				
 			Sino 
 				Si opcion_ == "3" Entonces
-					ordenamiento_lista_ascendente(vuelo_Mendoza,contador_mendoza)
-					mostrar_pasajero_por_nombre(vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_venta)
-				SiNo
-					si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
-						ordenamiento_lista_descendente(vuelo_Mendoza, contador_mendoza)
-						mostrar_lista_pasajeros(vuelo_Mendoza, contador_mendoza, datos_Cargados)
+					si contador_mendoza == 0 Entonces
+						Escribir "No hay pasajes vendidos"
 					SiNo
-						ordenamiento_lista_ascendente(vuelo_Mendoza, contador_mendoza)
-						mostrar_lista_pasajeros(vuelo_Mendoza, contador_mendoza, datos_Cargados)
+						ordenamiento_lista_ascendente(vuelo_Mendoza,contador_mendoza)
+						mostrar_pasajero_por_nombre(vuelo_Mendoza, contador_mendoza, datos_Cargados, opcion_venta)
+					FinSi
+				SiNo // OPCION 4
+					si contador_mendoza == 0 Entonces
+						Escribir "No hay pasajes vendidos"
+					SiNo
+						si Mayusculas(opcion_ordenamiento) == "DSC" Entonces
+							ordenamiento_lista_descendente(vuelo_Mendoza, contador_mendoza)
+							mostrar_lista_pasajeros(vuelo_Mendoza, contador_mendoza, datos_Cargados)
+						SiNo
+							ordenamiento_lista_ascendente(vuelo_Mendoza, contador_mendoza)
+							mostrar_lista_pasajeros(vuelo_Mendoza, contador_mendoza, datos_Cargados)
+						FinSi
 					FinSi
 				FinSi
 			FinSi
@@ -518,7 +568,7 @@ SubProceso validar_num(num)
 	Repetir
 		Leer num 
 		Si ConvertirANumero(num) < 0 o num == "" o Longitud(num) < 10 Entonces
-			Escribir "El numero debe ser positivo y de 10 digitos"
+			Escribir "El número debe ser positivo y de 10 dígitos"
 		FinSi
 	Hasta Que ConvertirANumero(num) > 0 y num <> "" y  Longitud(num) == 10
 FinSubProceso
@@ -527,8 +577,8 @@ Funcion nombre_valido <- validar_nombre(nombre)
 	Repetir
 		Leer nombre
 		Si nombre == "" Entonces
-			Escribir "El nombre no puede ser vacio o numero"
-			Escribir "Ingrese el nombre devuelta"
+			Escribir "El nombre no puede ser vacío o número"
+			Escribir "Ingrese el nombre nuevamente"
 		FinSi
 	Hasta Que nombre <> "" 
 	nombre_valido = nombre
@@ -537,8 +587,8 @@ SubProceso validar_menu(opcion_ Por Referencia)
 	Repetir
 		Leer opcion_
 		Si opcion_ < 1 o opcion_ > 4 Entonces
-			Escribir "Opcion Invalida"
-			Escribir "La opcion debe de ser entre 1 y 4"
+			Escribir "Opción Inválida"
+			Escribir "La opción debe de ser entre 1 y 4"
 		FinSi
 	Hasta Que opcion_ >= 1 y opcion_ <= 4
 FinSubProceso
